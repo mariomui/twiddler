@@ -106,13 +106,13 @@ body {
     margin-left: 50px;
 }
 
-.tweet-container {
-    border-top: 1px solid #f5f8fa; 
-    background: #FFF;
-    border-bottom: 2px solid #e6ecf0;
-    border-collapse: separate;
-    padding-bottom: 10px;
-}
+// .tweet-container {
+//     border-top: 1px solid #f5f8fa; 
+//     background: #FFF;
+//     border-bottom: 2px solid #e6ecf0;
+//     border-collapse: separate;
+//     padding-bottom: 10px;
+// }
 
 @for $j from 1 through 10 {
     .tweet-container-#{$j} {
@@ -120,6 +120,7 @@ body {
         border-collapse: separate;
         padding-bottom: 10px;
         list-style-type: none;
+        padding-left: 10px;
     }
 }
 
