@@ -4,6 +4,7 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" href="./assets/main.css">
+    <meta http-equiv="refresh" content=5>
   </head>
   <body>
     <script>
@@ -13,13 +14,17 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweetText = $(`<div class="tweet-text"></div>`);
-          var $tweetCont = $('<li class="tweet-container"></li>');
-
-          $tweetText.text(tweet.message+index);
           
-          $('<p>'+'@'+tweet.user+'</p>').appendTo(".tweet-bar");
-          $tweetText.appendTo('.tweet-bar');
+          var $tweetText = $(`<div class="tweet-text"></div>`);
+          $tweetText.text(tweet.message);
+
+
+          var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
+          var $tweetContClass = `.tweet-container-${index}`;
+          
+          $tweetCont.appendTo(".tweet-bar");
+          $('<p>'+'@'+tweet.user+'</p>').appendTo($tweetContClass);
+          $tweetText.appendTo($tweetContClass);
 
           index -= 1;
         }
