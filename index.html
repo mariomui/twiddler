@@ -4,14 +4,14 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
     <link rel="stylesheet" href="./assets/css/main.css">
-    <meta http-equiv="refresh" content=5>
+    <meta http-equiv="refresh" content=40>
   </head>
   <body>
     <script>
       
       $(document).ready(function(){
 
-        var newPage = $("<div data-role=page data-url=yay><div data-role=header><h1>YAY!!!!</h1></div><div data-role=content><img src=http://bukk.it/yay.gif /></div></div");
+        // var newPage = $("<div data-role=page data-url=yay><div data-role=header><h1>YAY!!!!</h1></div><div data-role=content><img src=http://bukk.it/yay.gif /></div></div");
 
         // //append it to the page container
         // newPage.appendTo( $.mobile.pageContainer );
@@ -28,33 +28,41 @@
         while(index >= 0){
           var tweet = streams.home[index];
           
-          var $tweetText = $(`<div class="tweet-text"></div>`);
+          var $tweetText = $(`<p class=tweet-text></p>`);
           $tweetText.text(tweet.message);
+
+          var $tweetUser = $(`<p class=tweet-user></p>`);
+          $tweetUser.text(tweet.user);
 
           var $trendCont = $(`<li class="trend-container-${index}"></li>`);
           var $trendContClass = `.trend-container-${index}`;
 
-          var $tweetUser = $(`<p>@${tweet.user}</p>`);
           var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
           var $tweetContClass = `.tweet-container-${index}`;
           var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
-          var $pStand = $(`<p></p>`);
-
+          
+          var $pStand = $('<p></p>');
+          
+          //container for user, text, time stamp
           $tweetCont.appendTo(".tweet-bar");
 
           
+          //content for tweet container
           $tweetUser.appendTo($tweetContClass);
+
           $tweetText.appendTo($tweetContClass);
           $tweetTimeStamp.appendTo($tweetContClass);
           
+          //content for trend container
           $trendCont.appendTo(".trend-bar");
 
-          if (tweet.message.indexOf('#') > -1) {
-            $tweetUser.appendTo($trendContClass);
+          // if ((tweet.message).indexOf('#') > -1) {
+          //   $.appendTo($trendContClass);
 
-          } 
-          
-          $cacheTally = tweet.message.split(' ')
+          // } 
+
+
+          $cacheTally = Object.assign($cacheTally, tweet.message.split(' ')
               .filter( item => item[0] === '#')
               .reduce( (accum, item) => {
                 if (accum[item]) {
@@ -64,17 +72,19 @@
                 }
                 return accum;
               },{})
+              )
               //#consult hack-reactor guide.
           
+          //only return the 
           $trendTopic = Object.entries($cacheTally).reduce( (accum, item) => {
-            if (item[1]>accum) {
+            if (item[1] > accum) {
               accum = item[0];
             }
             return accum;
           },0);
           if ($trendTopic) {
             $pStand.text($trendTopic);
-            $($pStand).appendTo($trendContClass);
+            $pStand.appendTo($trendContClass);
           }
             
           index -= 1;
