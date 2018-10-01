@@ -116,11 +116,6 @@ body {
     padding-bottom: 22px;
 }
 
-<<<<<<< HEAD
-.logo {
-    background: #1DA1F2;
-}
-=======
 @for $j from 1 through 10 {
     .tweet-container-#{$j} {
         border-bottom: 2px solid #e6ecf0;
@@ -138,4 +133,3 @@ body {
         list-style-type: none;
     }
 }
->>>>>>> tangent
