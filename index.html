@@ -3,7 +3,7 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
-    <link rel="stylesheet" href="./assets/main.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <meta http-equiv="refresh" content=5>
   </head>
   <body>
@@ -18,13 +18,15 @@
           var $tweetText = $(`<div class="tweet-text"></div>`);
           $tweetText.text(tweet.message);
 
-
+          var $tweetUser = $(`<p>@${tweet.user}</p>`);
           var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
           var $tweetContClass = `.tweet-container-${index}`;
-          
+          var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
+
           $tweetCont.appendTo(".tweet-bar");
-          $('<p>'+'@'+tweet.user+'</p>').appendTo($tweetContClass);
+          $tweetUser.appendTo($tweetContClass);
           $tweetText.appendTo($tweetContClass);
+          $tweetTimeStamp.appendTo($tweetContClass);
 
           index -= 1;
         }
