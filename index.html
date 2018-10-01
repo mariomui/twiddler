@@ -13,16 +13,17 @@
         var index = streams.home.length - 1;
         while(index >= 0){
           var tweet = streams.home[index];
-          var $tweet = $(`<li class="tweet-text"></li>`);
-          // var $tweetheader = $("<p></p>");
-          $tweet.text('@' + tweet.user + ': ' + tweet.message+index);
-          $('<p>'+tweet.user+'</p>').appendTo(".tweet-bar");
-          $tweet.appendTo('.tweet-bar');
+          var $tweetText = $(`<div class="tweet-text"></div>`);
+          var $tweetCont = $('<li class="tweet-container"></li>');
+
+          $tweetText.text(tweet.message+index);
+          
+          $('<p>'+'@'+tweet.user+'</p>').appendTo(".tweet-bar");
+          $tweetText.appendTo('.tweet-bar');
 
           index -= 1;
         }
 
-        index = streams.home.length - 1;
       });
     </script>
     <section>
