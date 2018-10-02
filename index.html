@@ -52,38 +52,38 @@
       // })();
       const fStore = {
         foo: function (index) {
-          $('<p>hello<p>').appendTo($('.grid'));
           var tweet = streams.home[index];
-          $('<p>' + tweet.user + '</p>').appendTo('.flex-5');
+          // $('<p>' + tweet.user + '</p>').appendTo('.flex-5');
+
+          var tweet = streams.home[index];
+
+          var $tweetText = $(`<p class="tweet-text"></p>`);
+          $tweetText.text(tweet.message);
+
+          var $tweetUser = $(`<p class="tweet-user"></p>`);
+          $tweetUser.text('@' + tweet.user);
+
+          var $tweetCont = $(`<p class="tweet-container-${index}"></p>`);
+          var $tweetContClass = `.tweet-container-${index}`;
+          var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
+
+          //container for user, text, time stamp
+          $tweetCont.appendTo(".tweet-bar");
+
+
+          //content for tweet container
+          $tweetUser.appendTo($tweetContClass);
+
+          $tweetText.appendTo($tweetContClass);
+          $tweetTimeStamp.appendTo($tweetContClass);
+          // let jack = something.foo(index);
         }
       }
 
-      const jack = Object.create(fStore);
 
       var index = streams.home.length - 1;
       while (index >= 0) {
-        var tweet = streams.home[index];
 
-        var $tweetText = $(`<p class="tweet-text"></p>`);
-        $tweetText.text(tweet.message);
-
-        var $tweetUser = $(`<p class="tweet-user"></p>`);
-        $tweetUser.text('@' + tweet.user);
-
-        var $tweetCont = $(`<p class="tweet-container-${index}"></p>`);
-        var $tweetContClass = `.tweet-container-${index}`;
-        var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
-
-        //container for user, text, time stamp
-        $tweetCont.appendTo(".tweet-bar");
-
-
-        //content for tweet container
-        $tweetUser.appendTo($tweetContClass);
-
-        $tweetText.appendTo($tweetContClass);
-        $tweetTimeStamp.appendTo($tweetContClass);
-        // let jack = something.foo(index);
 
         fStore.foo(index);
 

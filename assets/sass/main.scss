@@ -69,8 +69,8 @@ nav {
 }
 
 .tweet-bar {
-    // flex-direction: column;
-    display: block;
+    flex-direction: column;
+    animation: 1s 5s;
 }
 
 @for $j from 0 through 10 {
