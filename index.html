@@ -7,6 +7,9 @@
     <meta http-equiv="refresh" content=40>
   </head>
   <body>
+    <header>
+
+    </header>
     <script>
       
       $(document).ready(function(){
@@ -76,9 +79,13 @@
         }
         $trendCont.appendTo(".trend-bar");
         
-        for (let key in $cacheTally) {
-          $(`<p class="trending-tag">${key}<p>`).appendTo($trendContClass);
+        const showTrends = () => {
+          for (let key in $cacheTally) {
+            $(`<p class="trending-tag">${key}<p>`).appendTo($trendContClass);
+          }  
         }
+
+
       });
     </script>
     <section>
@@ -117,5 +124,8 @@
         </section>
       </div>
     </section>
+    <footer>
+
+    </footer>
   </body>
 </html>
