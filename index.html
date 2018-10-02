@@ -39,9 +39,16 @@
 
       var $body = $('body');
       // $body.html('');
-      var foo = (function () {
-        var tweet = streams.home[3];
-        $('<p>' + tweet.user + '</p>').appendTo($(".logo"));
+      //can i just return the function implementation?
+      var something = (function () {
+        var foo = function (index) {
+          var tweet = streams.home[index];
+
+          $('<p>' + tweet.user + '</p>').appendTo($(".logo"));
+        }
+        return {
+          foo: foo,
+        };
       })();
 
       var index = streams.home.length - 1;
@@ -67,12 +74,13 @@
 
         $tweetText.appendTo($tweetContClass);
         $tweetTimeStamp.appendTo($tweetContClass);
+        let jack = something.foo(index);
 
 
         index -= 1;
       }
 
-      foo;
+      let jack = something.foo(3);
     });
   </script>
   <section class="flex grid">
