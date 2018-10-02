@@ -50,41 +50,65 @@ table {
           box-sizing: border-box;
 }
 
-.parent-nav {
+.flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.parent-nav {
+  position: fixed;
+  height: 100px;
   background-color: red;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-  position: fixed;
+  top: 0;
 }
 
-.flex-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+nav {
   width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  height: 5em;
 }
 
-nav-item-1 {
+.nav-item-1 {
   padding: 22px 30px;
 }
 
-nav-item-2 {
+.nav-item-2 {
   padding: 22px 30px;
 }
 
-nav-item-3 {
+.nav-item-3 {
   padding: 22px 30px;
 }
 
-nav-item-4 {
+.nav-item-4 {
   padding: 22px 30px;
+}
+
+.grid {
+  margin-top: 130px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.row {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.row .col-1-3 {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.tweet-bar {
+  display: block;
 }
 /*# sourceMappingURL=main.css.map */

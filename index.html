@@ -16,8 +16,8 @@
 
 <body>
   <header>
-    <div class="parent-nav">
-      <div class="flex-nav">
+    <div class="flex parent-nav">
+      <div class="flex nav">
         <div class="nav-item1">
           <h1> Twiddler
             <!--stacked twitter icon-->
@@ -37,18 +37,9 @@
 
     $(document).ready(function () {
 
-      // var newPage = $("<div data-role=page data-url=yay><div data-role=header><h1>YAY!!!!</h1></div><div data-role=content><img src=http://bukk.it/yay.gif /></div></div");
-
-      // //append it to the page container
-      // newPage.appendTo( $.mobile.pageContainer );
-
-      // //go to it
-      // $.mobile.changePage( newPage );
-
       var $body = $('body');
       // $body.html('');
-      var $cacheTally = {};
-      var $trendingTopic = '';
+
 
       var index = streams.home.length - 1;
       while (index >= 0) {
@@ -84,60 +75,31 @@
 
         //this obtains a tally of all the hash tags but it's not as useful as i like
         //without more data or more hash tags.
-        $cacheTally = Object.assign($cacheTally, tweet.message.split(' ')
-          .filter(item => item[0] === '#')
-          .reduce((accum, item) => {
-            if (accum[item]) {
-              accum[item]++;
-            } else {
-              accum[item] = 1;
-            }
-            return accum;
-          }, {})
-        )
+
         //#consult hack-reactor guide.              
 
 
         index -= 1;
       }
-      $trendCont.appendTo(".trend-bar");
-
-      const showTrends = () => {
-        for (let key in $cacheTally) {
-          $(`<p class="trending-tag">${key}<p>`).appendTo($trendContClass);
-        }
-      }
 
 
     });
   </script>
-  <section class="grid">
-    <div class="row">
+  <section class="flex grid">
+    <div class="flex row">
       <section class="col-1-3">
-        <ul class="list-bar">
-          <li class="logo">
-          </li>
-          <li class="user-info">
-            <div class=flex-5>
-              <ul>
-                <li class="twoof5">mario mui</li>
-                <li class="threeof5">@mariomui</li>
-              </ul>
-            </div>
-          <li>
-            <div class="half-circle">
-            </div>
-          </li>
-        </ul>
-        <ul class="trend-bar"></ul>
+        <div class="col-1-3-top">
+          <div class="logo"> placeholder </div>
+          <div class="half-circle"> placeholder </div>
+          <div class=flex-5>
+            <div class="twoof5">mario mui</div>
+            <div class="threeof5">@mariomui</div>
+          </div>
+        </div>
       </section>
       <section class="content col-2-3">
-        <ul class="tweet-bar">
-        </ul>
-      </section>
-      <section class="col-1-3">
-        <div class="info-bar">
-        </div>
+        <section class="tweet-bar">
+        </section>
       </section>
     </div>
   </section>
