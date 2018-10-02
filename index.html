@@ -63,7 +63,7 @@
           var $tweetUser = $(`<p class="tweet-user"></p>`);
           $tweetUser.text('@' + tweet.user);
 
-          var $tweetCont = $(`<p class="tweet-container-${index}"></p>`);
+          var $tweetCont = $(`<div class="tweet-container-${index}"></div>`);
           var $tweetContClass = `.tweet-container-${index}`;
           var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
 
@@ -77,7 +77,8 @@
           $tweetText.appendTo($tweetContClass);
           $tweetTimeStamp.appendTo($tweetContClass);
           // let jack = something.foo(index);
-        }
+        },
+
       }
 
 
