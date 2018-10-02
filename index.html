@@ -39,7 +39,10 @@
 
       var $body = $('body');
       // $body.html('');
-
+      var foo = (function () {
+        var tweet = streams.home[3];
+        $('<p>' + tweet.user + '</p>').appendTo($(".logo"));
+      })();
 
       var index = streams.home.length - 1;
       while (index >= 0) {
@@ -51,7 +54,7 @@
         var $tweetUser = $(`<p class="tweet-user"></p>`);
         $tweetUser.text('@' + tweet.user);
 
-        var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
+        var $tweetCont = $(`<p class="tweet-container-${index}"></p>`);
         var $tweetContClass = `.tweet-container-${index}`;
         var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
 
@@ -69,7 +72,7 @@
         index -= 1;
       }
 
-
+      foo;
     });
   </script>
   <section class="flex grid">
