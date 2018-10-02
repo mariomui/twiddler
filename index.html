@@ -32,7 +32,7 @@
           $tweetText.text(tweet.message);
 
           var $tweetUser = $(`<p class=tweet-user></p>`);
-          $tweetUser.text(tweet.user);
+          $tweetUser.text('@'+tweet.user);
 
           var $trendCont = $(`<li class="trend-container-${index}"></li>`);
           var $trendContClass = `.trend-container-${index}`;
@@ -40,9 +40,7 @@
           var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
           var $tweetContClass = `.tweet-container-${index}`;
           var $tweetTimeStamp = $(`<p>${streams.home[index].created_at}</p>`);
-          
-          var $pStand = $('<p></p>');
-          
+
           //container for user, text, time stamp
           $tweetCont.appendTo(".tweet-bar");
 
@@ -54,14 +52,12 @@
           $tweetTimeStamp.appendTo($tweetContClass);
           
           //content for trend container
-          $trendCont.appendTo(".trend-bar");
+          
+          //make sure that there is actually a hash before appending.
+         
 
-          // if ((tweet.message).indexOf('#') > -1) {
-          //   $.appendTo($trendContClass);
-
-          // } 
-
-
+            //this obtains a tally of all the hash tags but it's not as useful as i like
+            //without more data or more hash tags.
           $cacheTally = Object.assign($cacheTally, tweet.message.split(' ')
               .filter( item => item[0] === '#')
               .reduce( (accum, item) => {
@@ -73,23 +69,16 @@
                 return accum;
               },{})
               )
-              //#consult hack-reactor guide.
+              //#consult hack-reactor guide.              
           
-          //only return the 
-          $trendTopic = Object.entries($cacheTally).reduce( (accum, item) => {
-            if (item[1] > accum) {
-              accum = item[0];
-            }
-            return accum;
-          },0);
-          if ($trendTopic) {
-            $pStand.text($trendTopic);
-            $pStand.appendTo($trendContClass);
-          }
             
           index -= 1;
         }
-
+        $trendCont.appendTo(".trend-bar");
+        
+        for (let key in $cacheTally) {
+          $(`<p class="trending-tag">${key}<p>`).appendTo($trendContClass);
+        }
       });
     </script>
     <section>
