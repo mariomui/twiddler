@@ -45,14 +45,11 @@
       while (index >= 0) {
         var tweet = streams.home[index];
 
-        var $tweetText = $(`<p class=tweet-text></p>`);
+        var $tweetText = $(`<p class="tweet-text"></p>`);
         $tweetText.text(tweet.message);
 
-        var $tweetUser = $(`<p class=tweet-user></p>`);
+        var $tweetUser = $(`<p class="tweet-user"></p>`);
         $tweetUser.text('@' + tweet.user);
-
-        var $trendCont = $(`<li class="trend-container-${index}"></li>`);
-        var $trendContClass = `.trend-container-${index}`;
 
         var $tweetCont = $(`<li class="tweet-container-${index}"></li>`);
         var $tweetContClass = `.tweet-container-${index}`;
@@ -67,16 +64,6 @@
 
         $tweetText.appendTo($tweetContClass);
         $tweetTimeStamp.appendTo($tweetContClass);
-
-        //content for trend container
-
-        //make sure that there is actually a hash before appending.
-
-
-        //this obtains a tally of all the hash tags but it's not as useful as i like
-        //without more data or more hash tags.
-
-        //#consult hack-reactor guide.              
 
 
         index -= 1;
