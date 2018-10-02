@@ -40,16 +40,25 @@
       var $body = $('body');
       // $body.html('');
       //can i just return the function implementation?
-      var something = (function () {
-        var foo = function (index) {
-          var tweet = streams.home[index];
+      // var something = (function () {
+      //   var foo = function (index) {
+      //     var tweet = streams.home[index];
 
-          $('<p>' + tweet.user + '</p>').appendTo($(".logo"));
+      //     $('<p>' + tweet.user + '</p>').appendTo($(".logo"));
+      //   }
+      //   return {
+      //     foo: foo,
+      //   };
+      // })();
+      const fStore = {
+        foo: function (index) {
+          $('<p>hello<p>').appendTo($('.grid'));
+          var tweet = streams.home[index];
+          $('<p>' + tweet.user + '</p>').appendTo('.flex-5');
         }
-        return {
-          foo: foo,
-        };
-      })();
+      }
+
+      const jack = Object.create(fStore);
 
       var index = streams.home.length - 1;
       while (index >= 0) {
@@ -74,13 +83,13 @@
 
         $tweetText.appendTo($tweetContClass);
         $tweetTimeStamp.appendTo($tweetContClass);
-        let jack = something.foo(index);
+        // let jack = something.foo(index);
 
+        fStore.foo(index);
 
         index -= 1;
       }
-
-      let jack = something.foo(3);
+      // let jack = something.foo(3);
     });
   </script>
   <section class="flex grid">
