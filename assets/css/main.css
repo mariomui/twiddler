@@ -46,12 +46,19 @@ table {
 *,
 *:before,
 *:after {
+  margin: 0;
+  padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
-.body {
+.debug-borders {
+  border: 1px dashed purple;
+}
+
+body {
   font-size: 18px;
+  background-color: #e5ecf0;
 }
 
 .flex {
@@ -68,43 +75,95 @@ table {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
+  z-index: 100;
   top: 0;
 }
 
 .nav {
   width: 100%;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  margin-left: 50px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn {
+  background: transparent;
+  -webkit-appearance: button;
+  -webkit-box-shadow: .15s ease-in-out;
+          box-shadow: .15s ease-in-out;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #1d8fd6;
+  border: 1px solid #1d8fd6;
+}
+
+.tweet-btn--primary {
+  background-color: #47aae7;
+  color: white;
+  border: 1px solid #47aae7;
+}
+
+.tweet-btn--primary:focus {
+  color: #FFF;
+}
+
+.refresh-btn {
+  height: 2.7em;
+  line-height: 2.7em;
+  width: 100%;
+  border-radius: 20px;
+  background: darkgray;
+  color: blue;
+}
+
+.refresh-bar {
+  background: transparent;
+}
+
+.nav-bar li {
+  display: inline-block;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.tweet-btn {
+  border-radius: 100px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 6px 16px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .nav-item-1 {
   padding: 22px 30px;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
 }
 
 .nav-item-2 {
   padding: 22px 30px;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
 }
 
 .nav-item-3 {
   padding: 22px 30px;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
 }
 
 .nav-item-4 {
   padding: 22px 30px;
-  -webkit-box-flex: 2;
-      -ms-flex: 2;
-          flex: 2;
 }
 
 .grid {
@@ -115,9 +174,8 @@ table {
 }
 
 .row {
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .row .col-1-3 {
@@ -128,16 +186,37 @@ table {
 
 .grid,
 .row {
-  width: 900px;
+  width: 100%;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+@media only screen and (max-device-width: 320px) {
+  .col-1-3 div {
+    display: none;
+  }
+  .row {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .col-1-3-top {
-  width: 100px;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 288px;
+  display: inherit;
 }
 
 .tweet-bar {
@@ -145,8 +224,6 @@ table {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-animation: 1s 5s;
-          animation: 1s 5s;
 }
 
 .tweet-user:before {
@@ -245,5 +322,74 @@ table {
   list-style-type: none;
   padding-left: 10px;
   background: #f5f8fa;
+}
+
+.logo {
+  background-color: #00a1f8;
+  color: white;
+  font-size: 20px;
+  height: 95px;
+  width: auto;
+  position: relative;
+  display: inherit;
+}
+
+.half-circle {
+  border-radius: 50%;
+  border: 3px solid white;
+  position: absolute;
+  z-index: 50;
+  top: 67px;
+  margin-left: 15px;
+  width: 72px;
+  height: 72px;
+  background: #00a1f8;
+  display: inherit;
+}
+
+.fa-camera {
+  position: relative;
+  left: 22px;
+  top: 22px;
+}
+
+.lower-square {
+  background: transparent;
+  border: 1px solid black;
+  position: relative;
+}
+
+.user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 12px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-info .twoof5,
+.user-info .threeof5 {
+  margin: 0;
+}
+
+.user-info .threeof5 {
+  font-weight: normal;
+  color: #657786;
+  font-size: 14px;
+}
+
+.user-info li {
+  list-style-type: none;
 }
 /*# sourceMappingURL=main.css.map */
