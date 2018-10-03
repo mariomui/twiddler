@@ -56,7 +56,9 @@
           // $('<p>' + tweet.user + '</p>').appendTo('.flex-5');
 
           var tweet = streams.home[index];
+          var jack = this.$formatter('i', 'batman', 'joker');
 
+          jack.appendTo('.logo');
           var $tweetText = $(`<p class="tweet-text"></p>`);
           $tweetText.text(tweet.message);
 
@@ -78,7 +80,15 @@
           $tweetTimeStamp.appendTo($tweetContClass);
           // let jack = something.foo(index);
         },
-
+        $formatter: function (elementStr, messageStr, className) {
+          return $('<' + elementStr + ' ' + 'class='
+            + '"'
+            + className
+            + '"'
+            + '>'
+            + messageStr
+            + '</messageStr>');
+        }
       }
 
 
