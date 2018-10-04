@@ -39,8 +39,8 @@
         <div class="nav-item4">
           <button class="btn tweet-btn tweet-btn--primary"> Compose a Twidder! </button>
         </div>
-        <div class="nav-item5">placeholders</div>
-        <div class="nav-item6">placeholders</div>
+        <!-- <div class="nav-item5">placeholders</div>
+        <div class="nav-item6">placeholders</div> -->
       </div>
     </div>
   </header>
@@ -76,25 +76,25 @@
             + '"'
             + '>'
             + messageStr
-            + '</messageStr>');
+            + '</' + elementStr +'>');
 
           $formatted.appendTo(destination);
         },
         //
         foo: function (index) {
           var tweet = streams.home[index];
-
+          
           var $tweetCont = $(`<div class="tweet-container-${index}"></div>`);
           var tweetContClass = `.tweet-container-${index}`;
+          // $formatter('div','','.tweet-container-'+index,'.tweet-bar')
 
           //container for user, text, time stamp
           $tweetCont.appendTo('.tweet-bar');
 
-
           //content for tweet container
-          this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
           this.$formatter('p', tweet.message, 'tweet-text', tweetContClass);
           this.$formatter('p', tweet.created_at, 'tweet-date', tweetContClass);
+          this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
 
         },
 

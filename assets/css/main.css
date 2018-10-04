@@ -50,10 +50,6 @@ table {
           box-sizing: border-box;
 }
 
-.debug-borders {
-  border: 1px dashed purple;
-}
-
 html {
   width: 100%;
   margin: 0;
@@ -62,6 +58,8 @@ html {
 body {
   font-size: 18px;
   background-color: #e5ecf0;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.7em;
 }
 
 .flex {
@@ -81,7 +79,7 @@ body {
 .parent-nav {
   position: fixed;
   height: 100px;
-  background-color: red;
+  background-color: #29658a;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
@@ -92,11 +90,18 @@ body {
 .nav {
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.nav:first-child {
+  color: white;
+  font-size: 20px;
+  font-family: 'Lato', sans-serif;
 }
 
 .btn {
@@ -109,13 +114,14 @@ body {
 
 .btn:hover {
   background-color: #1d8fd6;
-  border: 1px solid #1d8fd6;
+  border: 2px solid white;
 }
 
 .tweet-btn--primary {
   background-color: #47aae7;
   color: white;
   border: 1px solid #47aae7;
+  margin-left: -300px;
 }
 
 .tweet-btn--primary:focus {
@@ -127,7 +133,7 @@ body {
   line-height: 2.7em;
   width: 100%;
   border-radius: 20px;
-  background: darkgray;
+  background: white;
   color: blue;
 }
 
@@ -173,26 +179,38 @@ a {
 
 .nav-item-1 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .nav-item-2 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .nav-item-3 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .nav-item-4 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .nav-item-5 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .nav-item-6 {
   padding: 22px 30px;
+  color: white;
+  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .grid {
@@ -285,9 +303,8 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -295,18 +312,16 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
 }
 
 .tweet-container-2 {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -314,18 +329,16 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
 }
 
 .tweet-container-4 {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -333,18 +346,16 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
 }
 
 .tweet-container-6 {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -352,18 +363,16 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
 }
 
 .tweet-container-8 {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -371,18 +380,16 @@ a {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
 }
 
 .tweet-container-10 {
   border-bottom: 2px solid #e6ecf0;
   border-collapse: separate;
   padding-bottom: 10px;
-  list-style-type: none;
-  padding-left: 20px;
   padding: 0 10px 20px 20px;
+  width: 100%;
   background: #f5f8fa;
 }
 
@@ -435,6 +442,7 @@ a {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: white;
 }
 
 .user-info .twoof5,
