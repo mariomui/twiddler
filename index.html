@@ -9,8 +9,8 @@
         rel="stylesheet">
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <meta http-equiv="refresh"
-        content=40>
+  <!-- <meta http-equiv="refresh"
+        content=40> -->
   <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
   <title>Twiddler</title>
 </head>
@@ -46,6 +46,8 @@
   </header>
   <script src="data_generator.js"></script>
   <script src="jquery.js"></script>
+  <!-- <script src="./test.js"></script> -->
+
   <script>
     // var elementArr = document.getElementsByTagName('*');
     // for (var i = 0; i < elementArr.length; i++) {
@@ -78,14 +80,14 @@
             + messageStr
             + '</' + elementStr +'>');
 
-          $formatted.appendTo(destination);
+            $formatted.appendTo(destination);
         },
         //
         foo: function (index) {
           var tweet = streams.home[index];
           
-          var $tweetCont = $(`<div class="tweet-container-${index}"></div>`);
-          var tweetContClass = `.tweet-container-${index}`;
+          var $tweetCont = $(`<div class="tweet-container"></div>`);
+          var tweetContClass = `.tweet-container`;
           // $formatter('div','','.tweet-container-'+index,'.tweet-bar')
 
           //container for user, text, time stamp
@@ -94,8 +96,8 @@
           //content for tweet container
           this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
           this.$formatter('p', tweet.message, 'tweet-text', tweetContClass);
-          this.$formatter('p', tweet.created_at, 'tweet-date', tweetContClass);
-
+          this.$formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
+          
         },
 
       }
@@ -113,7 +115,11 @@
 
         index -= 1;
       }
+      setInterval(function() {
+        console.log(streams.home.length) }
+        ,13000);
 
+      
       // let jack = something.foo(3);
     });
 
@@ -151,68 +157,6 @@
 
 </html>
 <!--
-<!DOCTYPE html>
-<html>
-  <head>
-    
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <meta http-equiv="refresh" content=40>
-    <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
-    <title>Twiddler</title>
-
-  </head>
-  <body>
-    <header>
-      <div class="parent-nav">
-
-        <div class="flex-bar">
-          <section class="flex nav-item1">
-            <h1>
-              Twiddler
-              <i class="fa-stack fa-lg">
-                <i class="fa fa-twitter fa-stack-2x"></i>
-                
-              </i>
-            </h1>
-          </section>
-          <section class="flex nav-item2">
-            <div>placeholder</div>
-          </section>
-          <section class="flex nav-item3">
-            <div>placeholder</div>
-          </section>
-        </section>
-      </div>
-    </header>
-    <script src="jquery.js"></script>
-    <script src="data_generator.js"></script>
-    <script type="text/javascript">
-      
-      $(document).ready(function(){
-
-        // var newPage = $("<div data-role=page data-url=yay><div data-role=header><h1>YAY!!!!</h1></div><div data-role=content><img src=http://bukk.it/yay.gif /></div></div");
-
-        // //append it to the page container
-        // newPage.appendTo( $.mobile.pageContainer );
-
-        // //go to it
-        // $.mobile.changePage( newPage );
-
-        var $body = $('body');
-        // $body.html('');
-        var $cacheTally = {};
-        var $trendingTopic = '';
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          
-          var $tweetText = $(`<p class=tweet-text></p>`);
-          $tweetText.text(tweet.message);
-
-          var $tweetUser = $(`<p class=tweet-user></p>`);
-          $tweetUser.text('@'+tweet.user);
 
           var $trendCont = $(`<li class="trend-container-${index}"></li>`);
           var $trendContClass = `.trend-container-${index}`;
@@ -265,39 +209,53 @@
 
       });
     </script>
-    <section class="grid">
-      <div class="row"><section class="col-1-3">
-          <ul class="list-bar">
-          <li class="logo">
-          </li>
-          <li class="user-info">
-            <div class=flex-5>
-              <ul>
-                <li class="twoof5">mario mui</li>
-                <li class="threeof5">@mariomui</li>
-              </ul>
-            </div>
-          </li>
-          <li>
-            <div class="half-circle"></div>
-          </li>
-        </ul>
-        <ul class="trend-bar">
-          
-        </ul>
-        </section><section class="content col-2-3">
-          <ul class="tweet-bar">
-          </ul>
-        </section><section class="col-1-3">
-          <div class="info-bar">
 
-          </div>   
-        </section>
-      </div>
-    </section>
-    <footer>
+    okay some psuedo code
+    structure
+    <tweet-bar>
+      <tweet-container-10>
+      <t-c-9>
+     ....
+     Now i want to prepend the number of lists.
+     How does datagenerator work anyway?
+        okay there's  aforever loop in there. 
 
-    </footer>
-  </body>
-</html>
--->
+        my code
+       setInterval(function() {
+        console.log(streams.home.length) }
+        ,1500);
+
+        >> every time the length goes from 13, 14, 15, 16
+
+
+        generator code
+        var scheduleNextTweet = function(){
+        generateRandomTweet();
+        setTimeout(scheduleNextTweet, Math.random() * 1500);
+        };
+        scheduleNextTweet();
+
+        it keeps generating more and more tweets every 1500s.
+        I have to get the activate it pretty quickly. 
+        1. get first 11 tweets.
+        2. 1500 seconds go by.
+        3. 1 more tweet. 
+        4. no btn activation.
+        5. more tweets.
+        6. btn activate.
+        7. grab the tweets.
+        8. display them.
+
+        1. get first 11.
+        2. record the count of the original tweet Count : 10
+        3. record the count of the current tweet count when button activates.
+        4. let's say 50.
+        5. create a loop from originalTC to currentTC and prepend that from 1 to 10. 
+
+
+
+
+
+        -->
+
+        
