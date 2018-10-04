@@ -8,7 +8,7 @@
    
     box-sizing: border-box;
 }
-
+//for debugging;
 // .debug-borders{
 //     border: 1px dashed purple;
 // }
@@ -29,9 +29,12 @@ body {
 //also used to set margins for 1st
 //element after the nav.
 $nav-height: 100px;
-$refresh-btn: blue;
+$refresh-btn-font-color: rgb(236, 122, 122);
 $refresh-bar: white;
-$tweet-btn-color: #47aae7;
+$main-theme: #47aae7;
+$second-theme: #00a1f8;
+$dark-theme: #29658a;
+$off-black-theme: #14171a;
 
 
 .flex {
@@ -50,7 +53,7 @@ $tweet-btn-color: #47aae7;
     
     position: fixed;
     height: $nav-height;
-    background-color: #29658a;
+    background-color: $dark-theme;
     justify-content: flex-start;
     z-index: 100;
     top: 0;
@@ -82,13 +85,14 @@ $tweet-btn-color: #47aae7;
 }
 
 .btn:hover {
-    background-color: rgb(29, 143, 214);
+    // background-color: rgb(29, 143, 214);
+    opacity: .5;
     border: 2px solid white
 }
 .tweet-btn--primary{
-    background-color: $tweet-btn-color;
+    background-color: $main-theme;
     color: white;
-    border: 1px solid $tweet-btn-color;
+    border: 1px solid $main-theme;
     margin-left: -300px;
 
 }
@@ -103,10 +107,12 @@ $tweet-btn-color: #47aae7;
     width: 100%;
     border-radius: 20px;
     background: $refresh-bar;
-    color: $refresh-btn;
+    color: $refresh-btn-font-color;
+    font-size: 17px;
 }
 .refresh-bar {
-    background: transparent;
+    // background: transparent;
+    margin-bottom: 22px;
 }
 
 .nav-bar {
@@ -205,22 +211,27 @@ a {
 
 .tweet-bar {
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
     // flex-basis: 400px;
     // width: 500px;
     // animation: 1s 5s;
+    border: 2px solid #f5f8fa;
 }
 
 .tweet-text {
     /* border-top: 1px solid #f5f8fa; */
     /* background: #FFF; */
     /* display: list-item; */
-    color: blue;
+    color: $off-black-theme;
+    padding-left: 10px;
+}
+
+//man another rabbit whole of functions in scss that can turn colors into different shades. no i refuse to do that.
+.tweet-user {
+    color: $dark-theme;
 }
 .tweet-user:before {
     content:'@';
-    vertical-align: super;
+    vertical-align: middle;
 }
 
 @for $j from 0 through 10 {
@@ -238,7 +249,7 @@ a {
 }
 
 .logo {
-    background-color: #00a1f8;
+    background-color: #0597e6;
     color: white;
     font-size: 20px;
     height: 95px;
@@ -389,13 +400,6 @@ a {
 //     // background: #FFF;
 // }
 
-// .tweet-text {
-//     /* border-top: 1px solid #f5f8fa; */
-//     /* background: #FFF; */
-//     /* display: list-item; */
-//     color: blue;
-// }
-// .trending-tag {
 //     background: white;
 // }
 
@@ -484,20 +488,7 @@ a {
 //     flex: 1;
 //     background-position-y: 30px;
 //     background: #00a1f8;
-// }    
-// .user-info {
-//     background: white;
-//     height: 113px;
-//     font-weight: bold;
-//     font-size: 18px;
-//     line-height: 25px;
-// }
-
-// .flex-5 {
-//     display: flex;
-//     flex-direction: row-reverse;
-//     justify-content: center;
-//     padding-top: 12px;
+// 
 
 
 
@@ -709,16 +700,7 @@ a {
 //     background-position-y: 30px;
 //     background: #00a1f8;
 // }    
-// .user-info {
-//     background: white;
-//     height: 113px;
-//     font-weight: bold;
-//     font-size: 18px;
-//     line-height: 25px;
-// }
-
-// .flex-5 {
-//     display: flex;
+// 
 //     flex-direction: row-reverse;
 //     justify-content: center;
 //     padding-top: 12px;
@@ -755,12 +737,7 @@ a {
 //     // background: #FFF;
 // }
 
-// .tweet-text {
-//     /* border-top: 1px solid #f5f8fa; */
-//     /* background: #FFF; */
-//     /* display: list-item; */
-//     color: blue;
-// }
+// 
 // .trending-tag {
 //     background: white;
 // }

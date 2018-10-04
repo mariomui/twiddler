@@ -92,9 +92,9 @@
           $tweetCont.appendTo('.tweet-bar');
 
           //content for tweet container
+          this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
           this.$formatter('p', tweet.message, 'tweet-text', tweetContClass);
           this.$formatter('p', tweet.created_at, 'tweet-date', tweetContClass);
-          this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
 
         },
 

@@ -113,7 +113,7 @@ body {
 }
 
 .btn:hover {
-  background-color: #1d8fd6;
+  opacity: .5;
   border: 2px solid white;
 }
 
@@ -134,11 +134,12 @@ body {
   width: 100%;
   border-radius: 20px;
   background: white;
-  color: blue;
+  color: #ec7a7a;
+  font-size: 17px;
 }
 
 .refresh-bar {
-  background: transparent;
+  margin-bottom: 22px;
 }
 
 .nav-bar {
@@ -283,20 +284,24 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding-left: 10px;
-  padding-right: 10px;
+  border: 2px solid #f5f8fa;
 }
 
 .tweet-text {
   /* border-top: 1px solid #f5f8fa; */
   /* background: #FFF; */
   /* display: list-item; */
-  color: blue;
+  color: #14171a;
+  padding-left: 10px;
+}
+
+.tweet-user {
+  color: #29658a;
 }
 
 .tweet-user:before {
   content: '@';
-  vertical-align: super;
+  vertical-align: middle;
 }
 
 .tweet-container-0 {
@@ -394,7 +399,7 @@ a {
 }
 
 .logo {
-  background-color: #00a1f8;
+  background-color: #0597e6;
   color: white;
   font-size: 20px;
   height: 95px;
