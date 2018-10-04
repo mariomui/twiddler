@@ -126,10 +126,12 @@
           }  else {
             $tweetCont.prependTo('.tweet-bar');
           }
-          $tweetCont.animate( {'opacity' : '.3'}, 'slow');
-          $tweetCont.show(1000);
-
-          this.setPastCount(index);
+          $tweetCont.animate( {opacity : .25}, 5000);
+         
+          //have to use this to ignore the runningbackwards index.
+          if (this.tweetPastCount < index) {
+            this.setPastCount(index);
+          }
           //i want to append the 10th one the latest one to the top.
         },
 
