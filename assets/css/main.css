@@ -46,14 +46,17 @@ table {
 *,
 *:before,
 *:after {
-  margin: 0;
-  padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
 
 .debug-borders {
   border: 1px dashed purple;
+}
+
+html {
+  width: 100%;
+  margin: 0;
 }
 
 body {
@@ -67,25 +70,33 @@ body {
   display: flex;
 }
 
+.nav,
+.parent-nav {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .parent-nav {
   position: fixed;
   height: 100px;
   background-color: red;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  width: 100%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   z-index: 100;
   top: 0;
 }
 
 .nav {
-  width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .btn {
@@ -124,11 +135,21 @@ body {
   background: transparent;
 }
 
+.nav-bar {
+  margin: 0 50px;
+}
+
 .nav-bar li {
   display: inline-block;
   letter-spacing: .5px;
   text-transform: uppercase;
   color: white;
+  margin: 0px 10px;
+  padding: 0 50px;
+}
+
+.nav:last-child {
+  margin-left: 0;
 }
 
 a {
@@ -166,11 +187,18 @@ a {
   padding: 22px 30px;
 }
 
+.nav-item-5 {
+  padding: 22px 30px;
+}
+
+.nav-item-6 {
+  padding: 22px 30px;
+}
+
 .grid {
   margin-top: 130px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin-bottom: 5px;
+  margin-left: 80px;
 }
 
 .row {
@@ -179,21 +207,29 @@ a {
 }
 
 .row .col-1-3 {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin: 0 10px;
+  width: 33%;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+.row .col-2-3 {
+  margin: 0 50px 0 10px;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
 }
 
 .grid,
 .row {
-  width: 100%;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 @media only screen and (max-device-width: 320px) {
@@ -209,14 +245,19 @@ a {
 }
 
 .col-1-3-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-flex: initial;
+      -ms-flex: initial;
+          flex: initial;
   width: 288px;
-  display: inherit;
 }
 
 .tweet-bar {
@@ -224,10 +265,20 @@ a {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tweet-text {
+  /* border-top: 1px solid #f5f8fa; */
+  /* background: #FFF; */
+  /* display: list-item; */
+  color: blue;
 }
 
 .tweet-user:before {
   content: '@';
+  vertical-align: super;
 }
 
 .tweet-container-0 {
@@ -235,7 +286,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -244,7 +296,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
 }
 
 .tweet-container-2 {
@@ -252,7 +305,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -261,7 +315,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
 }
 
 .tweet-container-4 {
@@ -269,7 +324,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -278,7 +334,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
 }
 
 .tweet-container-6 {
@@ -286,7 +343,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -295,7 +353,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
 }
 
 .tweet-container-8 {
@@ -303,7 +362,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -312,7 +372,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
 }
 
 .tweet-container-10 {
@@ -320,7 +381,8 @@ a {
   border-collapse: separate;
   padding-bottom: 10px;
   list-style-type: none;
-  padding-left: 10px;
+  padding-left: 20px;
+  padding: 0 10px 20px 20px;
   background: #f5f8fa;
 }
 
@@ -329,9 +391,7 @@ a {
   color: white;
   font-size: 20px;
   height: 95px;
-  width: auto;
   position: relative;
-  display: inherit;
 }
 
 .half-circle {
@@ -344,7 +404,6 @@ a {
   width: 72px;
   height: 72px;
   background: #00a1f8;
-  display: inherit;
 }
 
 .fa-camera {
@@ -387,9 +446,5 @@ a {
   font-weight: normal;
   color: #657786;
   font-size: 14px;
-}
-
-.user-info li {
-  list-style-type: none;
 }
 /*# sourceMappingURL=main.css.map */

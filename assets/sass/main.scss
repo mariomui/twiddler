@@ -5,17 +5,20 @@
 *, 
 *:before, 
 *:after {
-    margin: 0;
-    padding: 0;
+   
     box-sizing: border-box;
 }
+
 .debug-borders{
     border: 1px dashed purple;
+}
+html {
+    width: 100%;
+    margin: 0;
 }
 body {
     font-size: 18px;
     background-color: #e5ecf0;
-
 }
 
 //GLOBAL VARIABLES====
@@ -25,6 +28,7 @@ body {
 $nav-height: 100px;
 $refresh-btn: blue;
 $refresh-bar: darkgray;
+$tweet-btn-color: #47aae7;
 
 
 .flex {
@@ -32,25 +36,32 @@ $refresh-bar: darkgray;
     display: flex;
 }
 
+.nav, 
 .parent-nav {
+    width: 100%;
+    display: flex;
+}
+
+
+.parent-nav {
+    
     position: fixed;
     height: $nav-height;
     background-color: red;
-    justify-content: center;
-    width: 100%;
+    justify-content: flex-start;
     z-index: 100;
-    
     top: 0;
     // margin-bottom: 50px;
     //becasue the position is fixed, margins don't work on it. it's out of the flow.
-
+    
 }
 
 .nav {
-    width: 100%;
     justify-content: space-around;
     align-items: center;
+    flex-wrap: wrap;
 }
+
 
 //different color on focus.
 .btn {
@@ -59,7 +70,7 @@ $refresh-bar: darkgray;
     box-shadow: .15s ease-in-out;
     text-transform: uppercase;
 }
-$tweet-btn-color: #47aae7;
+
 .btn:hover {
     background-color: rgb(29, 143, 214);
     border: 1px solid  rgb(29, 143, 214);
@@ -87,11 +98,20 @@ $tweet-btn-color: #47aae7;
     background: transparent;
 }
 
+.nav-bar {
+    margin: 0 50px;
+}
 .nav-bar li {
     display: inline-block;
     letter-spacing: .5px;
     text-transform: uppercase;
     color: white;
+    margin: 0px 10px;
+    padding: 0 50px;
+
+}
+.nav:last-child {
+    margin-left: 0;
 }
 
 a {
@@ -111,7 +131,7 @@ a {
     white-space: nowrap;
 }
 
-@for $i from 1 to 5 {
+@for $i from 1 to 7 {
     .nav-item-#{$i} {
         padding: 22px 30px;
         // flex: 2;
@@ -120,22 +140,32 @@ a {
 
 .grid {
     margin-top: ($nav-height+30);
-    justify-content: center;
+    margin-bottom: 5px;
+    // justify-content: center;
+    margin-left: 80px;
+    // margin-right: auto;
 }
 
 .row {
     justify-content: space-around;
+
     .col-1-3 {
-        justify-content: center;
-        // width: 288px;
+        margin: 0 10px;
+        width: 33%;
+        order: 1;
+    }
+    .col-2-3 {
+        margin: 0 50px 0 10px;
+
+        order: 3;
     }
 }
 
 .grid,
 .row {
-    width: 100%;
-    flex-direction: row;    
-    justify-content: space-evenly;
+    flex-direction: row; 
+    display: flex;
+  
 }
 
 //mobile device friendly only show tweets.
@@ -150,22 +180,33 @@ a {
 }
 
 .col-1-3-top {
-    
+    display: flex;
     // justify-content: center;
     flex-wrap: wrap;
     flex-direction: column;
+    flex: initial;
     width: 288px;
     // flex: 1 2;
-    display: inherit;
 }
 
 .tweet-bar {
     flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    // flex-basis: 400px;
+    // width: 500px;
     // animation: 1s 5s;
-    // flex: 2;
+}
+
+.tweet-text {
+    /* border-top: 1px solid #f5f8fa; */
+    /* background: #FFF; */
+    /* display: list-item; */
+    color: blue;
 }
 .tweet-user:before {
     content:'@';
+    vertical-align: super;
 }
 
 @for $j from 0 through 10 {
@@ -174,7 +215,8 @@ a {
         border-collapse: separate;
         padding-bottom: 10px;
         list-style-type: none;
-        padding-left: 10px;
+        padding-left: 20px;
+        padding: 0 10px 20px 20px;
         @if $j%2 == 0 {
             background: #f5f8fa;
         }
@@ -186,9 +228,7 @@ a {
     color: white;
     font-size: 20px;
     height: 95px;
-    width: auto;
     position: relative;
-    display: inherit;
 }
 .half-circle {
     border-radius: 50%;
@@ -201,7 +241,6 @@ a {
     height: 72px;
     // background-position-y: 30px;
     background: #00a1f8;
-    display: inherit;
 } 
 
 .fa-camera {
@@ -233,10 +272,6 @@ a {
         color: #657786;
         font-size: 14px;
     }
-    li {
-        // padding: 0 auto;
-        list-style-type: none;
-    }
 }
 // @for $j from 0 through 10 {
 //     .tweet-container-#{$j} {
@@ -265,29 +300,7 @@ a {
 //     justify-content: center;
     
 
-//     .flex-bar {
-//         display: flex;
-//         margin-bottom: 10px;
-//         background: white;
-//         justify-content: space-between;
-//         width: 1000px;
-//     }
 
-//     .nav-item1 {
-//         display: flex;
-
-//     }
-    
-//     .nav-item2 {
-//         display: flex;
-    
-//     }
-//     .nav-item3 {
-//         display: flex;
-
-//     }
-
-// }
 
 // body {
 //     background: #e5ecf0;
@@ -403,21 +416,7 @@ a {
 //         background: white;
 //         justify-content: space-between;
 //         width: 1000px;
-//     }
-    
-//     .nav-item1 {
-//         display: flex;
-
-//     }
-    
-//     .nav-item2 {
-//         display: flex;
-    
-//     }
-//     .nav-item3 {
-//         display: flex;
-
-//     }
+//  
 
 // }
 
@@ -425,11 +424,7 @@ a {
 //     background: #e5ecf0;
 // }
 
-// .grid,
-// .row {
-//     margin-top: 44px;
-//     width: 900px;
-// }
+
 
 // .col-1-3 {
 //     width: 20%;
@@ -599,12 +594,7 @@ a {
 //     // background: #FFF;
 // }
 
-// .tweet-text {
-//     /* border-top: 1px solid #f5f8fa; */
-//     /* background: #FFF; */
-//     /* display: list-item; */
-//     color: blue;
-// }
+
 // .trending-tag {
 //     background: white;
 // }
@@ -655,16 +645,6 @@ a {
 //     }
     
 //     .nav-item1 {
-//         display: flex;
-
-//     }
-    
-//     .nav-item2 {
-//         display: flex;
-    
-//     }
-//     .nav-item3 {
-//         display: flex;
 
 //     }
 
@@ -674,11 +654,6 @@ a {
 //     background: #e5ecf0;
 // }
 
-// .grid,
-// .row {
-//     margin-top: 44px;
-//     width: 900px;
-// }
 
 // .col-1-3 {
 //     width: 20%;
