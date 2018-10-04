@@ -9,10 +9,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-//for debugging;
-// .debug-borders{
-//     border: 1px dashed purple;
-// }
+// for debugging;
+.debug-borders{
+    border: 1px dashed purple;
+}
 
 body {
     font-size: 18px;
@@ -99,6 +99,7 @@ $off-black-theme: #14171a;
 }
 
 .refresh-btn {
+    cursor: pointer;
     height: 2.7em;
     line-height: 2.7em;
     width: 100%;
@@ -234,6 +235,7 @@ a {
     vertical-align: middle;
 }
 
+
 .tweet-container {
     border-bottom: 2px solid #e6ecf0;
     border-collapse: separate;
@@ -241,21 +243,24 @@ a {
     // list-style-type: none;
     padding: 0 10px 10px 10px;
     width: 100%;
+}
 
+.tweet-container:nth-child(even) {
+    background: #f5f8fa;
 }
-@for $j from 0 through 10 {
-    .tweet-container-#{$j} {
-        border-bottom: 2px solid #e6ecf0;
-        border-collapse: separate;
-        padding-bottom: 10px;
-        // list-style-type: none;
-        padding: 0 10px 10px 10px;
-        width: 100%;
-        @if $j%2 == 0 {
-            background: #f5f8fa;
-        }
-    }
-}
+// @for $j from 0 through 10 {
+//     .tweet-container-#{$j} {
+//         border-bottom: 2px solid #e6ecf0;
+//         border-collapse: separate;
+//         padding-bottom: 10px;
+//         // list-style-type: none;
+//         padding: 0 10px 10px 10px;
+//         width: 100%;
+//         @if $j%2 == 0 {
+//             background: #f5f8fa;
+//         }
+//     }
+// }
 
 .logo {
     background-color: #0597e6;

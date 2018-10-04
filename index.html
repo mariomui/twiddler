@@ -71,56 +71,115 @@
       // })();
       const fStore = {
         //helper functions
-        $formatter: function (elementStr, messageStr, className, destination) {
-          var $formatted = $('<' + elementStr + ' ' + 'class='
+        tweetPastCount: 0,
+        tweetCurrentCount: 0,
+        
+        //because of the async stuff involved, lets keep everyone using the same streams.home.
+        getCurrentCount: () => streams.home.length,
+
+        //get the correct loopign time.
+        setCurrentCount: function (number = streams.home.length) { 
+          this.tweetCurrentCount = number;
+        },
+
+        setPastCount: function (number) {
+          this.tweetPastCount = number;
+        },
+
+        // getPastCount: function () {
+        //   return this.tweetPastCount;
+        // },
+        
+        // getCurrentCount: function () {
+        //   return this.tweetCurrentCount;
+        // },
+
+
+        formatter: function (elementStr, messageStr, className, destination) {
+          var formatted = '<' + elementStr + ' ' + 'class='
             + '"'
             + className
             + '"'
             + '>'
             + messageStr
-            + '</' + elementStr +'>');
-
-            $formatted.appendTo(destination);
+            + '</' + elementStr +'>';
+            return formatted;
         },
         //
         foo: function (index) {
           var tweet = streams.home[index];
-          
-          var $tweetCont = $(`<div class="tweet-container"></div>`);
           var tweetContClass = `.tweet-container`;
-          // $formatter('div','','.tweet-container-'+index,'.tweet-bar')
-
-          //container for user, text, time stamp
-          $tweetCont.appendTo('.tweet-bar');
-
-          //content for tweet container
-          this.$formatter('p', tweet.user, 'tweet-user', tweetContClass);
-          this.$formatter('p', tweet.message, 'tweet-text', tweetContClass);
-          this.$formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
           
+          //collate the content.
+          var formatUser = this.formatter('p', tweet.user, 'tweet-user', tweetContClass);
+          var formatMessage = this.formatter('p', tweet.message, 'tweet-text', tweetContClass);
+          var formatTime = this.formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
+          
+          var combinedTweetContent = formatUser + formatMessage + formatTime;
+          
+          //put content into a class called tweet-container. slice away the .
+          var $tweetCont = $(`<div class=${tweetContClass.slice(1)}>${combinedTweetContent}</div>`);
+          
+          //jquery it out to .tweet-bar;
+          if( index < 10 ) {
+          $tweetCont.appendTo('.tweet-bar'); 
+          }  else {
+            $tweetCont.prependTo('.tweet-bar');
+          }
+          $tweetCont.animate( {'opacity' : '.3'}, 'slow');
+          $tweetCont.show(1000);
+
+          this.setPastCount(index);
+          //i want to append the 10th one the latest one to the top.
         },
 
+        fooLooper: function() { 
+          $("<p>hello</p>").prependTo('.tweet-bar');   
+          //i want to prepend each one abovethe tweets.
+          //tweet 11, then 12 then 13
+          // this.setCurrentCount();
+          for (var i = this.tweetPastCount+1; i <= this.tweetCurrentCount; ++i) {
+            this.foo(i);
+          }
+        },
+
+        //this creates a forever loop where the counts are always being updated.
+        everSet: function() {
+          $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
+
+          setTimeout( () => { 
+            this.setCurrentCount(); 
+            this.everSet();
+          },4000);
+          
+        }
       }
+      //END of object functionStore.
 
       //this recursively adds. remember to do j. meyers workshop when i get
       //more ahead of this project.
+      
       $("*").addClass("debug-borders");
-
-
+      
       var index = streams.home.length - 1;
       while (index >= 0) {
 
 
         fStore.foo(index);
-
+        
         index -= 1;
       }
-      setInterval(function() {
-        console.log(streams.home.length) }
-        ,13000);
+
+      $('.refresh-btn').click( () => { fStore.fooLooper(); });
+
+        fStore.everSet();
 
       
+      // document.getElementsByTagName('.refresh-btn').onClick=fStore.fooLooper();;
+      // setInterval( () => { fStore.setCurrentCount(); }, 13000);
+      
       // let jack = something.foo(3);
+
     });
 
 
@@ -251,6 +310,10 @@
         3. record the count of the current tweet count when button activates.
         4. let's say 50.
         5. create a loop from originalTC to currentTC and prepend that from 1 to 10. 
+
+        1. create an old count and a new count
+        2. create an event that will trigger the loop.
+        3. create the loop function that will prepend.
 
 
 
