@@ -65,7 +65,7 @@ $twitter-them: #0597e6;
 
 .nav {
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
     margin-bottom: 20px;
     display: flex;
     padding: 0 30px;
@@ -175,6 +175,10 @@ a {
 
 .filter-by {
     cursor: pointer;
+}
+
+.bingo {
+    opacity: 1 1000;
 }
 @for $i from 1 to 7 {
     .nav-item-#{$i} {

@@ -1,5 +1,8 @@
-setTimeout( () => { console.log('hi') }, 8000);
-console.log('bye');
+<style src="datagenerator.js">
+</style>
+
+
+
 //function implementations are ignored until invoked.
 // const generateNons = () => {
 //     console.info('hi');

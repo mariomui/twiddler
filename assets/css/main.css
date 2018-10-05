@@ -88,9 +88,9 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
   margin-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -212,6 +212,10 @@ a {
 
 .filter-by {
   cursor: pointer;
+}
+
+.bingo {
+  opacity: 1 1000;
 }
 
 .nav-item-1 {

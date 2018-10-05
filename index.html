@@ -71,8 +71,10 @@
         tweetCurrentCount: 0,
         
         //because of the async stuff involved, lets keep everyone using the same streams.home.
-        getCurrentCount: () => streams.home.length,
-
+        getCurrentCount: function () { 
+          return streams.home.length;
+        },
+        
         //get the correct loopign time.
         setCurrentCount: function (number = streams.home.length) { 
           this.tweetCurrentCount = number;
@@ -80,6 +82,17 @@
 
         setPastCount: function (number) {
           this.tweetPastCount = number;
+        },
+
+        getter1: function () {
+          return this.tweetPastCount;
+        },
+        getter2: function () {
+          return this.tweetCurrentCount;
+        },
+
+        getDiffCount: function () {
+           return Math.abs(this.getter2() - this.getter1());
         },
 
         // getPastCount: function () {
@@ -109,10 +122,13 @@
 
           
           //collate the content.
-          var formatUser = this.formatter('a target="_blank"', tweet.user, 'filter-by tweet-user', tweetContClass);
+          var formatUser = this.formatter('a', tweet.user, 'filter-by tweet-user', tweetContClass);
+
           var formatMessage = this.formatter('p', tweet.message, 'tweet-text', tweetContClass);
+
           var formatTime = this.formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
-          
+          this.updateTime();
+
           var combinedTweetContent = formatUser + formatMessage + formatTime;
           
           //put content into a class called tweet-container. slice away the .
@@ -131,11 +147,27 @@
             this.setPastCount(index);
           }
           //i want to append the 10th one the latest one to the top.
+
+          $('.tweet-user').click( (e) => {
+            var userName=$(e.target).text();
+            // alert($(this).attr('setid'));
+            // $('tweet').eq(1).slideUp();
+            fStore.filterByName(userName); 
+          });
+
+          // this.updateTime();
         },
 
         showTweetLooper: function() { 
-         
+          this.updateTime();
+          //so my divider doesnt get spammed.
+          if ((document.getElementsByClassName("tweet-bar")[0].firstChild.classList[0] !== 'tweet-divider') && this.getDiffCount() > 5) {
+            
             $("<div class='tweet-divider'>Past Tweets</p>").prependTo('.tweet-bar');   
+          }
+          // alert(this.getDiffCount());
+          // if (!($('.tweet-bar').first('.tweet-divider'))) {
+          
           //i want to prepend each one abovethe tweets.
           //tweet 11, then 12 then 13
           // this.setCurrentCount();
@@ -148,11 +180,17 @@
 
         //this creates a forever loop where the counts are always being updated.
         everSet: function() {
+          this.updateTime();
           $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
           this.updateTweetCount('.refresh-count');
+          setInterval( () => {
+            this.updateTime();
+          }, 60000);
+
           setTimeout( () => { 
             this.setCurrentCount(); 
             this.everSet();
+            // this.updateTime();
           },4000);
           
         },
@@ -160,23 +198,56 @@
         updateTweetCount: function(className = '.refresh-count') {
           var diffCount = Math.abs(this.tweetCurrentCount - this.tweetPastCount);
           $('.refresh-count').replaceWith(`<p class="refresh-count">${diffCount}</p>`);
+          // this.updateTime();
         },
 
-        clearTweetBar: () => {
+        clearTweetBar: function() {
           $('.tweet-bar').hide();
         },
         
-        updateTime: (location = '.tweet-date') => {
+        showTweetBar: function() {
+          $('.tweet-bar').show();
+          $('.tweet-container').show();
+        },
+
+        updateTime: function() {
           const now = new Date();
+          var x = document.getElementsByClassName('tweet-date');
+          
+          for (var i = 0, equation = 0; i < x.length; i++) {
+            // x[1].childNodes[0].nodeValue = 5
+            equationRes = ( now.getTime() - Number(x[i].textContent));
+            var answer = this.timeAgo(equationRes);              
+            x[i].textContent = answer;
+                      
+          }
           //get now time, get then time, do some math
           //then find that specific one and update it.
-          //is there dom pathing engine with locations?
+        },
+
+        timeAgo: function(equationRes) {
+          equationRes %= 6000;
+          if (equationRes >= 1 ) {
+            return `${Math.round(equationRes)} minutes ago`;
+          } else {
+            return `less than a minute ago.`;
+          }
         },
 
         filterByName: (userName) => {
           //get name
           //select all tweet containers where the html!=@whoever.
-          $(`.tweet-user:not(:contains("${userName}"))`).parent().hide();
+          for (var i = 0; i < $('.tweet-container').length; ++i) {
+            var bingo = $('.tweet-container').eq(i).find('.tweet-user').text();
+            if (userName ===  bingo) {
+              $('.tweet-container').eq(i).addClass('bingo');
+            } else {
+              $('.tweet-container').eq(i).hide();
+            }
+
+          }
+          //this works but won't when i click on reloops.
+          // $(`.tweet-user:not(:contains("${userName}"))`).parent().hide();
         }
       }
       //END of object functionStore.
@@ -197,16 +268,12 @@
 
       $('.refresh-btn').click( () => { fStore.showTweetLooper(); });
       // $('.clear-btn').click( () => { fStore.clearTweetBar(); });
-      // $('.tweet-btn').click( () => { fStore.clearTweetBar(); });
-      $('.tweet-user').click( (e) => {
-        var userName = $(e.target).text();
-        // alert($(this).attr('setid'));
-
-        fStore.filterByName(userName); 
-        });
-
+      // $('.tweet-btn').click( () => { fStore.showTweetBar(); });
+      // $('.tweet-btn').click( () => { fStore.updateTime(); });
+    
+        
         fStore.everSet();
-
+        // fStore.filterByName(); 
       
       // document.getElementsByTagName('.refresh-btn').onClick=fStore.showTweetLooper();;
       // setInterval( () => { fStore.setCurrentCount(); }, 13000);
