@@ -49,10 +49,7 @@
   <!-- <script src="./test.js"></script> -->
 
   <script>
-    // var elementArr = document.getElementsByTagName('*');
-    // for (var i = 0; i < elementArr.length; i++) {
-    //   elementArr[i].classList.add('debug-borders');
-    // }
+  
 
     $(document).ready(function () {
 
@@ -126,7 +123,7 @@
           }  else {
             $tweetCont.prependTo('.tweet-bar');
           }
-          $tweetCont.animate( {opacity : .25}, 5000);
+          $tweetCont.animate( {opacity : .25}, 10000);
          
           //have to use this to ignore the runningbackwards index.
           if (this.tweetPastCount < index) {
@@ -136,25 +133,40 @@
         },
 
         fooLooper: function() { 
-          $("<p>hello</p>").prependTo('.tweet-bar');   
+         
+            $("<div class='tweet-divider'>Past Tweets</p>").prependTo('.tweet-bar');   
           //i want to prepend each one abovethe tweets.
           //tweet 11, then 12 then 13
           // this.setCurrentCount();
           for (var i = this.tweetPastCount+1; i <= this.tweetCurrentCount; ++i) {
             this.foo(i);
           }
+          updateTweetCount();
         },
 
         //this creates a forever loop where the counts are always being updated.
         everSet: function() {
           $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
-
+          this.updateTweetCount('.refresh-count');
           setTimeout( () => { 
             this.setCurrentCount(); 
             this.everSet();
           },4000);
           
-        }
+        },
+
+        updateTweetCount: function(className = '.refresh-count') {
+          var diffCount = Math.abs(this.tweetCurrentCount - this.tweetPastCount);
+          $('.refresh-count').replaceWith(`<p class="refresh-count">${diffCount}</p>`);
+        },
+
+        clearTweetBar: () => {
+          $('.tweet-bar').css('display: none');
+        },
+        
+        updateTime: (location = '.tweet-date') => {
+          const now = new Date();
+        },
       }
       //END of object functionStore.
 
@@ -173,6 +185,7 @@
       }
 
       $('.refresh-btn').click( () => { fStore.fooLooper(); });
+      $('.clear-btn').click( () => { fStore.clearTweetBar(); });
 
         fStore.everSet();
 
@@ -204,6 +217,7 @@
       <section class="content col-2-3">
         <div class="refresh-bar">
           <button class="btn refresh-btn">refresh</button>
+          <span class="refresh-count"></span>
         </div>
         <div class="tweet-bar">
         </div>

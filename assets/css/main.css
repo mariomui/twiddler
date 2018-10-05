@@ -52,10 +52,6 @@ table {
           box-sizing: border-box;
 }
 
-.debug-borders {
-  border: 1px dashed purple;
-}
-
 body {
   font-size: 18px;
   background-color: #e5ecf0;
@@ -75,6 +71,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  margin: 0px;
 }
 
 .parent-nav {
@@ -115,7 +112,7 @@ body {
 }
 
 .btn:hover {
-  opacity: .5;
+  opacity: .4;
   border: 2px solid white;
 }
 
@@ -129,12 +126,33 @@ body {
   color: #FFF;
 }
 
+.refresh-count {
+  font-size: 18;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid white;
+  background: tan;
+  width: 20%;
+  z-index: -10;
+  padding-left: 20px;
+  margin-left: -10px;
+  color: white;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.refresh-count:after {
+  content: ' chirps';
+}
+
 .refresh-btn {
   cursor: pointer;
   height: 2.7em;
   line-height: 2.7em;
-  width: 100%;
   border-radius: 20px;
+  -ms-flex-preferred-size: 90%;
+      flex-basis: 90%;
   background: white;
   color: #ec7a7a;
   font-size: 17px;
@@ -142,6 +160,17 @@ body {
 
 .refresh-bar {
   margin-bottom: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 0 10px;
 }
 
 .nav-bar {
@@ -220,6 +249,7 @@ a {
   margin-top: 100px;
   margin-bottom: 5px;
   margin-left: 80px;
+  overflow-y: scroll;
 }
 
 .row {
@@ -241,6 +271,8 @@ a {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+  border: 1px solid #47aae7;
+  border-radius: 10px;
 }
 
 .grid,
@@ -283,6 +315,12 @@ a {
   -ms-flex-preferred-size: 288px;
       flex-basis: 288px;
   min-width: 288px;
+}
+
+.tweet-divider {
+  background: #29658a;
+  color: white;
+  vertical-align: top;
 }
 
 .tweet-bar {

@@ -10,9 +10,10 @@
     box-sizing: border-box;
 }
 // for debugging;
-.debug-borders{
-    border: 1px dashed purple;
-}
+
+// .debug-borders{
+//     border: 1px dashed purple;
+// }
 
 body {
     font-size: 18px;
@@ -44,6 +45,7 @@ $off-black-theme: #14171a;
 .parent-nav {
     width: 100%;
     display: flex;
+    margin: 0px;
 }
 
 
@@ -84,7 +86,7 @@ $off-black-theme: #14171a;
 
 .btn:hover {
     // background-color: rgb(29, 143, 214);
-    opacity: .5;
+    opacity: .4;
     border: 2px solid white
 }
 .tweet-btn--primary{
@@ -98,12 +100,30 @@ $off-black-theme: #14171a;
 
 }
 
+.refresh-count {
+    font-size: 18;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border:1px solid white;
+    background: tan;
+    width: 20%;
+    z-index: -10;
+    padding-left: 20px;
+    margin-left: -10px;
+    color: white;
+    align-self: center;
+}
+
+.refresh-count:after {
+    content: ' chirps';
+}
+
 .refresh-btn {
     cursor: pointer;
     height: 2.7em;
     line-height: 2.7em;
-    width: 100%;
     border-radius: 20px;
+    flex-basis: 90%;
     background: $refresh-bar;
     color: $refresh-btn-font-color;
     font-size: 17px;
@@ -111,6 +131,10 @@ $off-black-theme: #14171a;
 .refresh-bar {
     // background: transparent;
     margin-bottom: 22px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;;
+    padding: 0 10px;
 }
 
 .nav-bar {
@@ -156,12 +180,14 @@ a {
     }
 }
 
+
 .grid {
     margin-top: ($nav-height+30);
     margin-bottom: 5px;
     // justify-content: center;
     margin-left: 80px;
     // margin-right: auto;
+    overflow-y: scroll;
 }
 
 .row {
@@ -177,6 +203,8 @@ a {
         margin: 0 50px 0 10px;
 
         order: 3;
+        border: 1px solid $main-theme;
+        border-radius: 10px;
     }
 }
 
@@ -209,7 +237,11 @@ a {
     min-width: 288px;
     // flex: 1 2;
 }
-
+.tweet-divider {
+    background: $dark-theme;
+    color: white;
+    vertical-align: top;
+}
 .tweet-bar {
     flex-direction: column;
     width: 100%;
