@@ -95,6 +95,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  padding: 0 30px;
 }
 
 .nav:first-child {
@@ -209,6 +210,10 @@ a {
   white-space: nowrap;
 }
 
+.filter-by {
+  cursor: pointer;
+}
+
 .nav-item-1 {
   padding: 22px 30px;
   color: white;
@@ -246,7 +251,7 @@ a {
 }
 
 .grid {
-  margin-top: 100px;
+  margin-top: 120px;
   margin-bottom: 5px;
   margin-left: 80px;
   overflow-y: scroll;
@@ -362,11 +367,12 @@ a {
 }
 
 .logo {
-  background-color: #0597e6;
+  background-color: #29658a;
   color: white;
   font-size: 20px;
   height: 95px;
   position: relative;
+  border-radius: 10px;
 }
 
 .half-circle {
@@ -397,7 +403,8 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 12px;
+  margin-top: -5px;
+  padding-top: 5px;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   -webkit-box-pack: center;
@@ -411,6 +418,7 @@ a {
       -ms-flex-align: center;
           align-items: center;
   background: white;
+  border-radius: 0 0 10px 10px;
 }
 
 .user-info .twoof5,

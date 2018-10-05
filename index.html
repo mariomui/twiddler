@@ -49,8 +49,7 @@
   <!-- <script src="./test.js"></script> -->
 
   <script>
-  
-
+    
     $(document).ready(function () {
 
       var $body = $('body');
@@ -103,12 +102,14 @@
             return formatted;
         },
         //
-        foo: function (index) {
+        showTweet: function (index) {
           var tweet = streams.home[index];
           var tweetContClass = `.tweet-container`;
           
+
+          
           //collate the content.
-          var formatUser = this.formatter('p', tweet.user, 'tweet-user', tweetContClass);
+          var formatUser = this.formatter('a target="_blank"', tweet.user, 'filter-by tweet-user', tweetContClass);
           var formatMessage = this.formatter('p', tweet.message, 'tweet-text', tweetContClass);
           var formatTime = this.formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
           
@@ -132,16 +133,17 @@
           //i want to append the 10th one the latest one to the top.
         },
 
-        fooLooper: function() { 
+        showTweetLooper: function() { 
          
             $("<div class='tweet-divider'>Past Tweets</p>").prependTo('.tweet-bar');   
           //i want to prepend each one abovethe tweets.
           //tweet 11, then 12 then 13
           // this.setCurrentCount();
           for (var i = this.tweetPastCount+1; i <= this.tweetCurrentCount; ++i) {
-            this.foo(i);
+            this.showTweet(i);
           }
-          updateTweetCount();
+          $('.tweet-container').show();
+          this.updateTweetCount();
         },
 
         //this creates a forever loop where the counts are always being updated.
@@ -161,40 +163,55 @@
         },
 
         clearTweetBar: () => {
-          $('.tweet-bar').css('display: none');
+          $('.tweet-bar').hide();
         },
         
         updateTime: (location = '.tweet-date') => {
           const now = new Date();
+          //get now time, get then time, do some math
+          //then find that specific one and update it.
+          //is there dom pathing engine with locations?
         },
+
+        filterByName: (userName) => {
+          //get name
+          //select all tweet containers where the html!=@whoever.
+          $(`.tweet-user:not(:contains("${userName}"))`).parent().hide();
+        }
       }
       //END of object functionStore.
 
       //this recursively adds. remember to do j. meyers workshop when i get
       //more ahead of this project.
       
-      $("*").addClass("debug-borders");
+      // $("*").addClass("debug-borders");
       
       var index = streams.home.length - 1;
       while (index >= 0) {
 
 
-        fStore.foo(index);
+        fStore.showTweet(index);
         
         index -= 1;
       }
 
-      $('.refresh-btn').click( () => { fStore.fooLooper(); });
-      $('.clear-btn').click( () => { fStore.clearTweetBar(); });
+      $('.refresh-btn').click( () => { fStore.showTweetLooper(); });
+      // $('.clear-btn').click( () => { fStore.clearTweetBar(); });
+      // $('.tweet-btn').click( () => { fStore.clearTweetBar(); });
+      $('.tweet-user').click( (e) => {
+        var userName = $(e.target).text();
+        // alert($(this).attr('setid'));
+
+        fStore.filterByName(userName); 
+        });
 
         fStore.everSet();
 
       
-      // document.getElementsByTagName('.refresh-btn').onClick=fStore.fooLooper();;
+      // document.getElementsByTagName('.refresh-btn').onClick=fStore.showTweetLooper();;
       // setInterval( () => { fStore.setCurrentCount(); }, 13000);
       
       // let jack = something.foo(3);
-
     });
 
 

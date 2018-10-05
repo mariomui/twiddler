@@ -27,13 +27,14 @@ body {
 //nav-bar height
 //also used to set margins for 1st
 //element after the nav.
-$nav-height: 70px;
+$nav-height: 90px;
 $refresh-btn-font-color: rgb(236, 122, 122);
 $refresh-bar: white;
 $main-theme: #47aae7;
 $second-theme: #00a1f8;
 $dark-theme: #29658a;
 $off-black-theme: #14171a;
+$twitter-them: #0597e6;
 
 
 .flex {
@@ -67,6 +68,7 @@ $off-black-theme: #14171a;
     align-items: center;
     margin-bottom: 20px;
     display: flex;
+    padding: 0 30px;
 
 }
 .nav:first-child {
@@ -99,6 +101,7 @@ $off-black-theme: #14171a;
     color: #FFF;
 
 }
+
 
 .refresh-count {
     font-size: 18;
@@ -170,6 +173,9 @@ a {
     white-space: nowrap;
 }
 
+.filter-by {
+    cursor: pointer;
+}
 @for $i from 1 to 7 {
     .nav-item-#{$i} {
         padding: 22px 30px;
@@ -295,11 +301,12 @@ a {
 // }
 
 .logo {
-    background-color: #0597e6;
+    background-color: $dark-theme;
     color: white;
     font-size: 20px;
     height: 95px;
     position: relative;
+    border-radius: 10px;
 }
 .half-circle {
     border-radius: 50%;
@@ -327,12 +334,15 @@ a {
 
 .user-info {
     display: flex;
-    padding-top: 12px;
+    margin-top: -5px;
+    padding-top: 5px;
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: column;
     align-items: center;
     background: white;
+    border-radius: 0 0 10px 10px;
+
 
     .twoof5,
     .threeof5 {
