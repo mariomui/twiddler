@@ -126,7 +126,7 @@
 
           var formatMessage = this.formatter('p', tweet.message, 'tweet-text', tweetContClass);
 
-          var formatTime = this.formatter('p', tweet.created_at.getTime(), 'tweet-date', tweetContClass);
+          var formatTime = this.formatter(`button value=${tweet.created_at.getTime()} type="button" disabled`, tweet.created_at.getTime(), 'tweet-date', tweetContClass);
           this.updateTime();
 
           var combinedTweetContent = formatUser + formatMessage + formatTime;
@@ -140,7 +140,7 @@
           }  else {
             $tweetCont.prependTo('.tweet-bar');
           }
-          $tweetCont.animate( {opacity : .25}, 10000);
+          $tweetCont.animate( {opacity : .35}, 110000);
          
           //have to use this to ignore the runningbackwards index.
           if (this.tweetPastCount < index) {
@@ -185,7 +185,7 @@
           this.updateTweetCount('.refresh-count');
           setInterval( () => {
             this.updateTime();
-          }, 60000);
+          }, 6000);
 
           setTimeout( () => { 
             this.setCurrentCount(); 
@@ -214,10 +214,12 @@
           const now = new Date();
           var x = document.getElementsByClassName('tweet-date');
           
-          for (var i = 0, equation = 0; i < x.length; i++) {
+          for (var i = 0, equationRes = 0; i < x.length; i++) {
             // x[1].childNodes[0].nodeValue = 5
-            equationRes = ( now.getTime() - Number(x[i].textContent));
-            var answer = this.timeAgo(equationRes);              
+            equationRes = ( now.getTime() - Number(x[i].value));
+            console.log(equationRes);
+            var answer = this.timeAgo(equationRes); 
+            console.info('answer');             
             x[i].textContent = answer;
                       
           }
@@ -226,9 +228,9 @@
         },
 
         timeAgo: function(equationRes) {
-          equationRes %= 6000;
+          equationRes /= 60000;
           if (equationRes >= 1 ) {
-            return `${Math.round(equationRes)} minutes ago`;
+            return `About ${Math.floor(equationRes)} minutes ago`;
           } else {
             return `less than a minute ago.`;
           }

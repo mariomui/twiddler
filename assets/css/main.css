@@ -349,6 +349,11 @@ a {
   padding-left: 10px;
 }
 
+.tweet-date {
+  padding: 10px;
+  font-size: 15px;
+}
+
 .tweet-user {
   color: #29658a;
 }
