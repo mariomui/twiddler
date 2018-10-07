@@ -75,7 +75,6 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 0px;
 }
 
 .parent-nav {
@@ -97,31 +96,76 @@ body {
 }
 
 .nav {
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
-  margin-bottom: 20px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0 30px;
 }
 
-.nav:first-child {
+.nav-item-1 {
+  padding: 0 30px;
   color: white;
-  font-size: 20px;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-2 {
+  padding: 0 30px;
+  color: white;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-3 {
+  padding: 0 30px;
+  color: white;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-4 {
+  padding: 0 30px;
+  color: white;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-5 {
+  padding: 0 30px;
+  color: white;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-6 {
+  padding: 0 30px;
+  color: white;
+  font: 16px "Helvetica Nue", Helvetica, Arial, san-    serif;
+}
+
+.nav-item-1:first-child {
+  color: white;
+  font-size: 25px;
   font-family: 'Lato', sans-serif;
+}
+
+.nav-item2:second-child {
+  margin-left: -25px;
 }
 
 .btn {
   background: transparent;
-  -webkit-appearance: button;
   -webkit-box-shadow: .15s ease-in-out;
           box-shadow: .15s ease-in-out;
   text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  padding: 0px 10px;
+  background: #00a1f8;
+  border: 1px solid white;
+  border-radius: 10px;
+  color: white;
 }
 
 .btn:hover {
@@ -162,10 +206,14 @@ body {
   display: none;
 }
 
-.form-toggle:checked ~ fieldset {
+.form-toggle:checked ~ .invisible {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.invisible {
+  display: none;
 }
 
 .form-grid {
@@ -176,11 +224,54 @@ body {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  padding: 0 30px 30px 0;
 }
 
 .form-row {
-  margin-right: 100px;
-  padding: 10px 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  color: white;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  vertical-align: top;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.form-1 {
+  -webkit-box-ordinal-group: 11;
+      -ms-flex-order: 10;
+          order: 10;
+  padding-right: 100px;
+}
+
+.form-2 {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-right: 100px;
+}
+
+textarea {
+  resize: none;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.message-area {
+  resize: none;
+  display: none;
 }
 
 input {
@@ -188,55 +279,63 @@ input {
 }
 
 .composer {
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   color: white;
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
 }
 
-.compose-form label {
-  display: block;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-
-.compose-form input {
+.composer label {
   display: block;
 }
 
-.refresh-count {
-  font-size: 18;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border: 1px solid white;
-  background: tan;
-  width: 20%;
-  z-index: -10;
-  padding-left: 20px;
-  margin-left: -10px;
-  color: white;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+.composer input {
+  display: block;
 }
 
 .refresh-count:after {
   content: ' chirps';
 }
 
+.refresh-count {
+  font-size: 16px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border: 1px solid white;
+  background: tan;
+  z-index: -10;
+  margin-left: -10px;
+  color: white;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+  -webkit-box-flex: 2;
+      -ms-flex: 2;
+          flex: 2;
+  height: 2.7em;
+  line-height: 2.7em;
+  text-align: center;
+}
+
 .refresh-btn {
   cursor: pointer;
   height: 2.7em;
   line-height: 2.7em;
-  border-radius: 20px;
-  -ms-flex-preferred-size: 90%;
-      flex-basis: 90%;
+  border-top-right-radius: 10px;
   background: white;
   color: #ec7a7a;
-  font-size: 17px;
+  font-size: 16px;
+  width: 75%;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+  text-align: center;
 }
 
 .refresh-bar {
-  margin-bottom: 22px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -244,14 +343,15 @@ input {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  padding: 0 10px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  vertical-align: top;
 }
 
 .nav-bar {
-  margin: 0 50px;
+  margin: 0 25px;
+  display: inline-block;
+  font-size: 2em;
 }
 
 .nav-bar li {
@@ -265,6 +365,10 @@ input {
 
 .nav:last-child {
   margin-left: 0;
+}
+
+a:hover {
+  -webkit-text-stroke: 1px #47aae7;
 }
 
 a {
@@ -292,42 +396,6 @@ a {
 
 .bingo {
   opacity: 1 1000;
-}
-
-.nav-item-1 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
-}
-
-.nav-item-2 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
-}
-
-.nav-item-3 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
-}
-
-.nav-item-4 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
-}
-
-.nav-item-5 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
-}
-
-.nav-item-6 {
-  padding: 22px 30px;
-  color: white;
-  font: 14px "Helvetica Nue", Helvetica, Arial, san-    serif;
 }
 
 .grid {
@@ -358,6 +426,13 @@ a {
           order: 3;
   border: 1px solid #47aae7;
   border-radius: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .grid,
@@ -406,6 +481,7 @@ a {
   background: #29658a;
   color: white;
   vertical-align: top;
+  padding-left: 22px;
 }
 
 .tweet-bar {
