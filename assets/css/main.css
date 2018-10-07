@@ -168,16 +168,26 @@ body {
   display: flex;
 }
 
+.form-grid {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
 .form-row {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   margin-right: 100px;
   padding: 10px 50px;
 }
 
+input {
+  font-size: 20px;
+}
+
 .composer {
-  -ms-flex-item-align: end;
-      align-self: flex-end;
   display: none;
   color: white;
 }

@@ -36,6 +36,7 @@ $dark-theme: #29658a;
 $off-black-theme: #14171a;
 $twitter-them: #0597e6;
 
+$margin-right: 100px;
 
 .flex {
     // margin-top: 100px;
@@ -133,13 +134,21 @@ $twitter-them: #0597e6;
         display:flex;
     
 }
+.form-grid {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+}
 .form-row {
-    align-self: flex-end;
-    margin-right: 100px;
+    margin-right: $margin-right;
     padding: 10px 50px;
 }
+
+input {
+    font-size: 20px;
+}
 .composer {
-    align-self: flex-end;
     display: none;
     color: white;
 }
