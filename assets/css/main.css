@@ -86,6 +86,14 @@ body {
           justify-content: flex-start;
   z-index: 100;
   top: 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 5px solid #0597e6;
 }
 
 .nav {
@@ -129,6 +137,60 @@ body {
 
 .tweet-btn--primary:focus {
   color: #FFF;
+}
+
+.form-toggle-label {
+  display: inline-block;
+  cursor: pointer;
+  font-size: 17px;
+  padding: 0px 10px;
+  background: #00a1f8;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.form-toggle-label:hover {
+  opacity: .5;
+}
+
+.form-toggle-label:after,
+.form-toggle-label:before {
+  width: 3.5em;
+}
+
+.form-toggle {
+  display: none;
+}
+
+.form-toggle:checked ~ fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.form-row {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-right: 100px;
+  padding: 10px 50px;
+}
+
+.composer {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  display: none;
+  color: white;
+}
+
+.compose-form label {
+  display: block;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.compose-form input {
+  display: block;
 }
 
 .refresh-count {

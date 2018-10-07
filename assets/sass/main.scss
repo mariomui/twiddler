@@ -60,7 +60,10 @@ $twitter-them: #0597e6;
     top: 0;
     // margin-bottom: 50px;
     //becasue the position is fixed, margins don't work on it. it's out of the flow.
-    
+    flex-direction: column;
+    display:flex;
+    border-bottom: 5px solid $twitter-them; 
+
 }
 
 .nav {
@@ -69,7 +72,6 @@ $twitter-them: #0597e6;
     margin-bottom: 20px;
     display: flex;
     padding: 0 30px;
-
 }
 .nav:first-child {
     color: white;
@@ -101,8 +103,54 @@ $twitter-them: #0597e6;
     color: #FFF;
 
 }
+// .compose-fake-btn {
+//     background: $main-theme;
+//     border-radius: 50%;
+// }
+.form-toggle-label {
+    display: inline-block;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 0px 10px;
+    background: $second-theme;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.form-toggle-label:hover {
+    opacity: .5;
+}
 
+.form-toggle-label:after,
+.form-toggle-label:before {
+    width: 3.5em;
+}
 
+.form-toggle {
+    display: none;
+}
+
+.form-toggle:checked ~ fieldset {
+        display:flex;
+    
+}
+.form-row {
+    align-self: flex-end;
+    margin-right: 100px;
+    padding: 10px 50px;
+}
+.composer {
+    align-self: flex-end;
+    display: none;
+    color: white;
+}
+.compose-form label {
+    display: block;
+    justify-content: flex-start;
+}
+    
+.compose-form input {
+    display: block;
+}
 .refresh-count {
     font-size: 18;
     border-top-right-radius: 5px;

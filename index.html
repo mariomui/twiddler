@@ -18,7 +18,7 @@
 <body>
   <header>
     <div class="parent-nav">
-      <div class="nav">
+      <nav class="nav">
         <div class="nav-item1">
           <h1> Twiddler
             <!--stacked twitter icon-->
@@ -37,11 +37,29 @@
         </div>
         <div class="nav-item3"></div>
         <div class="nav-item4">
-          <button class="btn tweet-btn tweet-btn--primary"> Compose a Twidder! </button>
+
+          <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
+          <div class="compose-fake-btn">
+            <label for="form-toggle" class="form-toggle-label">
+              Compose A Twidder
+            </label>
+          </div>
+          
+          <!-- </button> -->
         </div>
+     
         <!-- <div class="nav-item5">placeholders</div>
         <div class="nav-item6">placeholders</div> -->
-      </div>
+      </nav>
+      <section class="form-row">
+        <input type="checkbox" id="form-toggle" class="form-toggle">
+        <fieldset class="composer">
+            <form class="compose-form">
+              <label>Username<input type="text"></label>
+              <label>Password<input type="text"></label>
+            </form>
+        </fieldset>
+      </section>
     </div>
   </header>
   <script src="data_generator.js"></script>
