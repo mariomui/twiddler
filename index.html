@@ -12,14 +12,13 @@
   <!-- <meta http-equiv="refresh"
         content=40> -->
   <link href="http://fonts.googleapis.com/css?family=Lato:100,300,400">
-  <title>Twiddler</title>
 </head>
 
 <body>
   <header>
     <div class="parent-nav">
       <nav class="nav">
-        <div class="nav-item1">
+        <div class="nav-item-1">
           <h1> Twiddler
             <!--stacked twitter icon-->
             <i class="fa-stack fa-lg">
@@ -28,19 +27,19 @@
             </i>
           </h1>
         </div>
-        <div class="nav-item2">
+        <div class="nav-item-2">
           <ul class="nav-bar">
             <li><a href="#home"> home</a></li>
-            <li>placeholder</li>
-            <li>plceholder</li>
+            <li></li>
+            <li></li>
           </ul>
         </div>
-        <div class="nav-item3"></div>
-        <div class="nav-item4">
+        <div class="nav-item-3"></div>
+        <div class="nav-item-4">
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
-            <label for="form-toggle" class="form-toggle-label">
+            <label for="form-toggle" class="btn form-toggle-label">
               Compose A Twidder
             </label>
           </div>
@@ -51,18 +50,37 @@
         <!-- <div class="nav-item5">placeholders</div>
         <div class="nav-item6">placeholders</div> -->
       </nav>
-      <div class="form-grid">
-        <section class="form-row">
-          <input type="checkbox" id="form-toggle" class="form-toggle">
-          <fieldset class="composer">
-              <form class="compose-form">
-                <label>Username<input type="text"></label>
-                <label>Password<input type="text"></label>
-              </form>
-          </fieldset>
-        </section>
+      <input type="checkbox" id="form-toggle" class="form-toggle">
+      <div class="invisible">
+          <div class="form-grid">
+            <div class="form-row">
+              <div class="form-1">
+                <form class="main">
+                  <fieldset class="composer">
+                        <label>Username<input type="text"></label>
+                        <label>Password<input type="text"></label>
+                  </fieldset>
+                  <fieldset class="composer-action">
+                    <input class="btn" type="submit" name="submit" value="Login">
+                  </fieldset>
+                </form>
+              </div>
+                 
+              <div class="form-2">
+                <form>
+                  <fieldset class="message-area">
+                    <legend>Message</legend>
+                      <textarea cols="50" rows="10">
+
+                      </textarea>
+                  </fieldset>
+                </form>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
+      
   </header>
   <script src="data_generator.js"></script>
   <script src="jquery.js"></script>
@@ -203,15 +221,10 @@
         everSet: function() {
           
           
-      
-
           this.updateTime();
           $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
           this.updateTweetCount('.refresh-count');
-          setInterval( () => {
-            this.updateTime();
-          }, 6000);
-          
+
           setTimeout( () => { 
             this.setCurrentCount(); 
             this.everSet();
@@ -219,6 +232,7 @@
           },4000);
           
         },
+        
 
         updateTweetCount: function(className = '.refresh-count') {
           var diffCount = Math.abs(this.tweetCurrentCount - this.tweetPastCount);
@@ -254,7 +268,11 @@
 
         timeAgo: function(equationRes) {
           equationRes /= 60000;
-          if (equationRes >= 1 ) {
+          equationRes = Math.floor(equationRes);
+          if (equationRes === 1) {
+            return 'About 1 minute ago';
+          }
+          if (equationRes > 1 ) {
             return `About ${Math.floor(equationRes)} minutes ago`;
           } else {
             return `less than a minute ago.`;
@@ -302,7 +320,9 @@
               fStore.keydown(event);
             }
       });
-
+      setInterval( () => {
+            fStore.updateTime();
+          }, 60000);
 
       // if (isDebugMode) {
       //   $("*").addClass("debug-borders");
@@ -351,11 +371,12 @@
       </section>
       <section class="content col-2-3">
         <div class="refresh-bar">
-          <button class="btn refresh-btn">refresh</button>
-          <span class="refresh-count"></span>
+          <div class="btn refresh-btn">Refresh</div>
+          <label class="refresh-count"></label>
+          <!-- I dont want to do divitis but flex works best with block elements. -->
         </div>
-        <div class="tweet-bar">
-        </div>
+        <!-- This is the feed -->
+        <div class="tweet-bar"></div>
       </section>
       <!-- <section class="col-1-3">
         <div>
