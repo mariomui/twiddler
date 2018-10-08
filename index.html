@@ -391,9 +391,10 @@
               rectanglePos = x[i].parentElement.getBoundingClientRect();
             }
           }
-          console.log(rectanglePos);
-          console.log(bodyRect);
-
+          // console.log(rectanglePos);
+          // console.log(bodyRect);
+          
+          //gets the offset and scrolls to the latest tweet.
           window.scrollTo(0,rectanglePos.y-bodyRect.y);
         }, 5150);
         
