@@ -39,11 +39,7 @@
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
-<<<<<<< HEAD
-            <label id='second' for="form-toggle" class="btn form-toggle-label">
-=======
             <label id="second" for="form-toggle" class="btn form-toggle-label">
->>>>>>> goldmaster
               Compose A Twidder
             </label>
             <label id='third' class="btn closer">Close</label>
@@ -389,8 +385,8 @@
       });
 
 //debugger: uses the text area to insert a message from visitor
-      $('#message-activator').on('click', (event) => {
-        const temporaryMess = $('textarea#message-bingo').val();
+      $('#message-activator').on('click', () => {
+        var temporaryMess = $('textarea#message-bingo').val();
        
         fStore.writeTweet(temporaryMess.trim());
         //wipes out the message after it has been recieved.
@@ -399,18 +395,12 @@
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         //or window.scrollTo(0,0)
         
-<<<<<<< HEAD
-        $('#second').on('click', () => {
-          $("textarea#message-bingo").focus();
-        });
-=======
         $('#third').hide();
         $('#second').show();
 
-        $('.refresh-btn').text("Waiting To Load.");
+        $('.refresh-btn').text("Waiting To Load...");
         
         
->>>>>>> goldmaster
         
         setTimeout( () => {
           fStore.showTweetLooper(); 
@@ -438,14 +428,7 @@
         
       
       });
-<<<<<<< HEAD
-
       
-
-//
-=======
-      
->>>>>>> goldmaster
 //listener for the border-debugger keystroke CMD+E
       document.addEventListener('keydown', function(event) {
         if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
