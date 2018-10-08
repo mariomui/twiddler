@@ -126,12 +126,17 @@ $margin-right: 100px;
     color: #FFF;
 
 }
-// .compose-fake-btn {
-//     background: $main-theme;
-//     border-radius: 50%;
+.compose-fake-btn {
+    display: flex;
+}
+
+
+// .fa-window-close-o {
+//     display: block;
+//     // cursor: pointer;
 // }
 .form-toggle-label {
-    display: inline-block;
+    display: flex;
     cursor: pointer;
     font-size: 17px;
     padding: 0px 10px;
@@ -156,6 +161,8 @@ $margin-right: 100px;
         display:flex;
     
 }
+
+
 .invisible {
     display: none;
 }
@@ -182,20 +189,24 @@ $margin-right: 100px;
     padding-right: $margin-right;
 }
 .form-2 {
-    order: 4;
+    order: 1;
+    // z-index: 100;
     display: flex;
-    padding-right: $margin-right;
+    // padding-right: $margin-right;
 
 }
 textarea {
     resize: none;
     overflow-y: auto;
     width: 100%;
+    line-height: 1.7em;
+    font-size: 1.7em;
     
 }
 .message-area {
     resize: none;
-    display: none
+    display: flex;
+    
 }
 
 input {
@@ -384,7 +395,6 @@ a {
     width: 100%;
     // animation: 1s 5s;
     border: 2px solid #f5f8fa;
-
 }
 
 .tweet-text {

@@ -30,7 +30,7 @@
         <div class="nav-item-2">
           <ul class="nav-bar">
             <li><a href="#home"> home</a></li>
-            <li></li>
+            <li><a class="btn tester"></a></li>
             <li></li>
           </ul>
         </div>
@@ -39,10 +39,11 @@
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
-            <label for="form-toggle" class="btn form-toggle-label">
+            <label id=#second for="form-toggle" class="btn form-toggle-label">
               Compose A Twidder
             </label>
           </div>
+        
           
           <!-- </button> -->
         </div>
@@ -61,18 +62,22 @@
                         <label>Password<input type="text"></label>
                   </fieldset>
                   <fieldset class="composer-action">
-                    <input class="btn" type="submit" name="submit" value="Login">
+                    <label>
+                      <input class="btn" name="submit" value="Login">
+                    </label>
+                    
                   </fieldset>
                 </form>
               </div>
                  
               <div class="form-2">
-                <form>
+                <form name="alpha">
                   <fieldset class="message-area">
                     <legend>Message</legend>
-                      <textarea cols="50" rows="10">
-
-                      </textarea>
+                      <textarea id="message-bingo"></textarea>
+                  </fieldset>
+                  <fieldset class="message-action">
+                    <input id="message-activator" type="text" class='btn' value="submit">
                   </fieldset>
                 </form>
               </div>
@@ -88,9 +93,15 @@
 
   <script>
     //global variables.
-    var isDebugMode = false;
-    $(document).ready(function () {
+    
 
+    var visitor = 'Unknown';
+    streams.users[visitor] = [];
+    var isDebugMode = false;
+    var peekaboo;
+
+    $(document).ready(function () {
+      
       var $body = $('body');
       // $body.html('');
       //can i just return the function implementation?
@@ -133,14 +144,6 @@
         getDiffCount: function () {
            return Math.abs(this.getter2() - this.getter1());
         },
-
-        // getPastCount: function () {
-        //   return this.tweetPastCount;
-        // },
-        
-        // getCurrentCount: function () {
-        //   return this.tweetCurrentCount;
-        // },
 
 
         formatter: function (elementStr, messageStr, className, destination) {
@@ -200,12 +203,15 @@
         showTweetLooper: function() { 
           this.updateTime();
           //so my divider doesnt get spammed.
-          if ((document.getElementsByClassName("tweet-bar")[0].firstChild.classList[0] !== 'tweet-divider') && this.getDiffCount() > 5) {
+          //If I don't see the divider and the diff count is greater than five then
+          //do the divider bar.
+
+          if ((document.getElementsByClassName("tweet-bar")[0].firstChild.classList[0] !== 'tweet-divider') && this.getDiffCount() > 2) {
             
             $("<div class='tweet-divider'>Past Tweets</p>").prependTo('.tweet-bar');   
           }
-          // alert(this.getDiffCount());
-          // if (!($('.tweet-bar').first('.tweet-divider'))) {
+
+          
           
           //i want to prepend each one abovethe tweets.
           //tweet 11, then 12 then 13
@@ -292,7 +298,8 @@
 
           }
         },
-
+        
+        //pressing cmd+e activates borders on the screen.
         keydown: function (evt) {
           
 
@@ -305,21 +312,32 @@
             $("*").removeClass("debug-borders");
           }
         },
+        writeTweet: function(message) {
+          writeTweet(message);
+        },
+        
+       
+
 
 
           //this works but won't when i click on reloops.
           // $(`.tweet-user:not(:contains("${userName}"))`).parent().hide();
         
-        }//END of object functionStore.
+      }//END of object functionStore.
 
+
+        // function toggleDisplay(className) {
+        //   var x = document.getElementsByClassName(className)[0].style.display;
+        //   if (x === "none" || x === null) {
+        //     x.display = "flex";
+        //   } else {
+        //     x.display = "none";
+        //   }
+        // };
       var index = streams.home.length - 1;
       //this recursively adds borders to all my presentation kit.
         
-      document.addEventListener('keydown', function(event) {
-            if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
-              fStore.keydown(event);
-            }
-      });
+    
       setInterval( () => {
             fStore.updateTime();
           }, 60000);
@@ -335,8 +353,61 @@
         
         index -= 1;
       }
+//Click handlers
 
-      $('.refresh-btn').click( () => { fStore.showTweetLooper(); });
+      
+//debugger: testing the writeTweet funtion //this links to some random button.
+      $('.tester').on('click', () => {
+        fStore.writeTweet('hello') });
+
+//refresh button
+      $('.refresh-btn').click( () => { 
+        fStore.showTweetLooper(); 
+      });
+
+//debugger: uses the text area to insert a message from visitor
+      $('#message-activator').on('click', () => {
+        const temporaryMess = $('textarea#message-bingo').val();
+        fStore.writeTweet(temporaryMess.trim());
+        //wipes out the message after it has been recieved.
+        document.getElementById('message-bingo').value = '';
+        document.getElementsByClassName('form-toggle')[0].checked = false;
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
+        //or window.scrollTo(0,0)
+        
+        
+        
+        setTimeout( () => {
+          fStore.showTweetLooper(); 
+
+          var rectanglePos;
+          var flag = false;
+          var bodyRect = document.body.getBoundingClientRect();
+          var x = document.querySelectorAll('.tweet-user'); 
+          for (var i = 0; i < x.length; ++i) {
+            if (x[i].innerHTML === 'Unknown' && flag === false) {
+              flag = true;
+              x[i].parentElement.style.backgroundColor = '#ddeb25bd';
+              rectanglePos = x[i].parentElement.getBoundingClientRect();
+            }
+          }
+          console.log(rectanglePos);
+          console.log(bodyRect);
+
+          window.scrollTo(0,rectanglePos.y-bodyRect.y);
+        }, 5150);
+        
+        
+      
+      });
+
+//listener for the border-debugger keystroke CMD+E
+      document.addEventListener('keydown', function(event) {
+        if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
+          fStore.keydown(event);
+        }
+      });
+      
       // $('.clear-btn').click( () => { fStore.clearTweetBar(); });
       // $('.tweet-btn').click( () => { fStore.showTweetBar(); });
       // $('.tweet-btn').click( () => { fStore.updateTime(); });
