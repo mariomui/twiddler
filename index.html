@@ -165,11 +165,11 @@
 
           
           //collate the content.
-          var formatUser = this.formatter('a', tweet.user, 'filter-by tweet-user', tweetContClass);
+          var formatUser = this.formatter('a', tweet.user, 'tweet-user filter-by', tweetContClass);
 
           var formatMessage = this.formatter('p', tweet.message, 'tweet-text', tweetContClass);
 
-          var formatTime = this.formatter(`button value=${tweet.created_at.getTime()} type="button" disabled`, tweet.created_at.getTime(), 'tweet-date', tweetContClass);
+          var formatTime = this.formatter(`button value="${tweet.created_at.getTime()}" type="button" disabled`, `${tweet.created_at.getTime()}`, 'tweet-date', tweetContClass);
           this.updateTime();
 
           var combinedTweetContent = formatUser + formatMessage + formatTime;
@@ -177,19 +177,27 @@
           //put content into a class called tweet-container. slice away the .
           var $tweetCont = $(`<div class=${tweetContClass.slice(1)}>${combinedTweetContent}</div>`);
           
-          //jquery it out to .tweet-bar;
-          if( index < 10 ) {
+          //for the first 11, append it since it goes from 10 to 0.
+          //but when i update my count, it goes from past is 10, current is past++.
+          if( index <= 10 ) {
           $tweetCont.appendTo('.tweet-bar'); 
           }  else {
             $tweetCont.prependTo('.tweet-bar');
           }
+
+          //age the old tweets opacity gradually/visually.
           $tweetCont.animate( {opacity : .35}, 110000);
          
           //have to use this to ignore the runningbackwards index.
-          if (this.tweetPastCount < index) {
+          
+          //pastCount/current so we have 0 10, now index is at 0 after the loop.
+          if (this.getter1() < index) {
             this.setPastCount(index);
           }
-          //i want to append the 10th one the latest one to the top.
+          // this.updateTweetCount();
+
+
+          // i want to append the 10th one the latest one to the top.
 
           $('.filter-by.tweet-user').click( (e) => {
             var userName=$(e.target).text();
@@ -232,7 +240,7 @@
           //removing line 231 results in faster times. breaking up updateTime into 2 functions will better. A helper functin and then the looping function.
           this.updateTime();
           this.setCurrentCount(); 
-          $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
+          $('.threeof5').text('[Streaming: '+this.tweetCurrentCount+'] Past: '+this.tweetPastCount);
           this.updateTweetCount('.refresh-count');
           
           setTimeout( () => { 
@@ -356,7 +364,7 @@
         
         index -= 1;
       }
-
+      index = 10;
       $('.twoof5').text(visitor);
       document.querySelector('.twoof5').text = visitor;
 //Click handlers
@@ -390,25 +398,34 @@
       });
       // $('.refresh-btn').click( () => fStore.showTweetLooper());
 
-//debugger: uses the text area to insert a message from visitor
+//click handler for composing a message.
       $('#message-activator').on('click', () => {
+
+        //obtain value in text area.
         var temporaryMess = $('textarea#message-bingo').val();
-       
         fStore.writeTweet(temporaryMess.trim());
-        //wipes out the message after it has been recieved.
+        
+        //wipes out the textarea message after sending.
         document.getElementById('message-bingo').value = '';
+        
+        //hide the utility bar
         document.getElementsByClassName('form-toggle')[0].checked = false;
+
+        //scroll to the top of the screen
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         //or window.scrollTo(0,0)
         
+        //toggle the buttons.
         $('#third').hide();
         $('#second').show();
-
+        
+        //let user know what's happening.
         $('.refresh-btn').text("Waiting To Load...");
         
-        
-        
+
+        //wait a few seconds for ShowTweetLooper to show the tweets and then scroll to that location
         setTimeout( () => {
+          //pseduo activate the button click of refresh.
           fStore.showTweetLooper(); 
 
           var rectanglePos;
@@ -471,8 +488,8 @@
             </div>
           </div>
           <div class="user-info">
-            <div class="twoof5">User </div>
-            <div class="threeof5">@userName</div>
+            <span class="twoof5">User </span>
+            <span class="threeof5">@userName</span>
           </div>
         </div>
       </section>
