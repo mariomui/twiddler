@@ -39,9 +39,14 @@
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
+<<<<<<< HEAD
             <label id='second' for="form-toggle" class="btn form-toggle-label">
+=======
+            <label id="second" for="form-toggle" class="btn form-toggle-label">
+>>>>>>> goldmaster
               Compose A Twidder
             </label>
+            <label id='third' class="btn closer">Close</label>
           </div>
         
           
@@ -353,8 +358,26 @@
         
         index -= 1;
       }
+
+      $('.twoof5').text(visitor);
+      document.querySelector('.twoof5').text = visitor;
 //Click handlers
 
+//this one is buggy. can't get autofocus on textarea.
+      // document.getElementById('second').addEventListener('click', () => {
+      //   document.getElementById('message-bingo').focus();
+      // });
+
+     document.getElementById('second').addEventListener('click', (e) => {
+       $(e.target).hide();
+       $('#third').show();
+     });// i tried for 2 hours to do this in the dom.
+
+     document.getElementById('third').addEventListener('click', (e) => {
+      $(e.target).hide();
+       $('#second').show();
+       document.getElementsByClassName('form-toggle')[0].checked = false;
+     });
       
 //debugger: testing the writeTweet funtion //this links to some random button.
       $('.tester').on('click', () => {
@@ -366,8 +389,9 @@
       });
 
 //debugger: uses the text area to insert a message from visitor
-      $('#message-activator').on('click', () => {
+      $('#message-activator').on('click', (event) => {
         const temporaryMess = $('textarea#message-bingo').val();
+       
         fStore.writeTweet(temporaryMess.trim());
         //wipes out the message after it has been recieved.
         document.getElementById('message-bingo').value = '';
@@ -375,9 +399,18 @@
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         //or window.scrollTo(0,0)
         
+<<<<<<< HEAD
         $('#second').on('click', () => {
           $("textarea#message-bingo").focus();
         });
+=======
+        $('#third').hide();
+        $('#second').show();
+
+        $('.refresh-btn').text("Waiting To Load.");
+        
+        
+>>>>>>> goldmaster
         
         setTimeout( () => {
           fStore.showTweetLooper(); 
@@ -387,7 +420,7 @@
           var bodyRect = document.body.getBoundingClientRect();
           var x = document.querySelectorAll('.tweet-user'); 
           for (var i = 0; i < x.length; ++i) {
-            if (x[i].innerHTML === 'Unknown' && flag === false) {
+            if (x[i].innerHTML === visitor && flag === false) {
               flag = true;
               x[i].parentElement.style.backgroundColor = '#ddeb25bd';
               rectanglePos = x[i].parentElement.getBoundingClientRect();
@@ -398,15 +431,21 @@
           
           //gets the offset and scrolls to the latest tweet.
           window.scrollTo(0,rectanglePos.y-bodyRect.y);
+          $('.refresh-btn').text("Click To Refresh");
+
         }, 5150);
-        
+
         
       
       });
+<<<<<<< HEAD
 
       
 
 //
+=======
+      
+>>>>>>> goldmaster
 //listener for the border-debugger keystroke CMD+E
       document.addEventListener('keydown', function(event) {
         if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {

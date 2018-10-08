@@ -87,13 +87,16 @@ $margin-right: 100px;
     color: white;
     font-size: 25px;
     font-family: 'Lato', sans-serif;
+    align-content: flex-start;
 }
 
 .nav-item2:second-child {
-    margin-left: -25px;
+    align-content: center;
 }
 
-
+.nav-item:last-child {
+    align-content: flex-end;
+}
 //different color on focus.
 .btn {
     background: transparent;
@@ -128,6 +131,7 @@ $margin-right: 100px;
 }
 .compose-fake-btn {
     display: flex;
+    flex-direction: column;
 }
 
 
@@ -499,6 +503,14 @@ a {
         color: #657786;
         font-size: 14px;
     }
+}
+
+.closer {
+    // margin-left: 10;
+    // position: absolute;
+    display: none;
+    cursor: pointer;
+    padding: 0px 100px;
 }
 // @for $j from 0 through 10 {
 //     .tweet-container-#{$j} {
