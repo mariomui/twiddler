@@ -147,10 +147,18 @@ body {
   color: white;
   font-size: 25px;
   font-family: 'Lato', sans-serif;
+  -ms-flex-line-pack: start;
+      align-content: flex-start;
 }
 
 .nav-item2:second-child {
-  margin-left: -25px;
+  -ms-flex-line-pack: center;
+      align-content: center;
+}
+
+.nav-item:last-child {
+  -ms-flex-line-pack: end;
+      align-content: flex-end;
 }
 
 .btn {
@@ -187,6 +195,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .form-toggle-label {
@@ -602,5 +614,11 @@ a {
   font-weight: normal;
   color: #657786;
   font-size: 14px;
+}
+
+.closer {
+  display: none;
+  cursor: pointer;
+  padding: 0px 100px;
 }
 /*# sourceMappingURL=main.css.map */

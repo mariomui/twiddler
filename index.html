@@ -39,9 +39,10 @@
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
-            <label id=#second for="form-toggle" class="btn form-toggle-label">
+            <label id="second" for="form-toggle" class="btn form-toggle-label">
               Compose A Twidder
             </label>
+            <label id='third' class="btn closer">Close</label>
           </div>
         
           
@@ -56,7 +57,7 @@
           <div class="form-grid">
             <div class="form-row">
               <div class="form-1">
-                <form class="main">
+                <!-- <form class="main">
                   <fieldset class="composer">
                         <label>Username<input type="text"></label>
                         <label>Password<input type="text"></label>
@@ -67,7 +68,7 @@
                     </label>
                     
                   </fieldset>
-                </form>
+                </form> -->
               </div>
                  
               <div class="form-2">
@@ -355,6 +356,21 @@
       }
 //Click handlers
 
+//this one is buggy. can't get autofocus on textarea.
+      // document.getElementById('second').addEventListener('click', () => {
+      //   document.getElementById('message-bingo').focus();
+      // });
+
+     document.getElementById('second').addEventListener('click', (e) => {
+       $(e.target).hide();
+       $('#third').show();
+     });// i tried for 2 hours to do this in the dom.
+
+     document.getElementById('third').addEventListener('click', (e) => {
+      $(e.target).hide();
+       $('#second').show();
+       document.getElementsByClassName('form-toggle')[0].checked = false;
+     });
       
 //debugger: testing the writeTweet funtion //this links to some random button.
       $('.tester').on('click', () => {
@@ -374,6 +390,11 @@
         document.getElementsByClassName('form-toggle')[0].checked = false;
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         //or window.scrollTo(0,0)
+        
+        $('#third').hide();
+        $('#second').show();
+
+        $('.refresh-btn').text("Waiting To Load.");
         
         
         
@@ -396,12 +417,14 @@
           
           //gets the offset and scrolls to the latest tweet.
           window.scrollTo(0,rectanglePos.y-bodyRect.y);
+          $('.refresh-btn').text("Click To Refresh");
+
         }, 5150);
-        
+
         
       
       });
-
+      
 //listener for the border-debugger keystroke CMD+E
       document.addEventListener('keydown', function(event) {
         if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
