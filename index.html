@@ -96,7 +96,7 @@
     //global variables.
     
 
-    var visitor = 'Unknown';
+    var visitor = 'Guest';
     streams.users[visitor] = [];
     var isDebugMode = false;
     var peekaboo;
@@ -354,6 +354,9 @@
         
         index -= 1;
       }
+
+      $('.twoof5').text(visitor);
+      document.querySelector('.twoof5').text = visitor;
 //Click handlers
 
 //this one is buggy. can't get autofocus on textarea.
@@ -382,8 +385,9 @@
       });
 
 //debugger: uses the text area to insert a message from visitor
-      $('#message-activator').on('click', () => {
+      $('#message-activator').on('click', (event) => {
         const temporaryMess = $('textarea#message-bingo').val();
+       
         fStore.writeTweet(temporaryMess.trim());
         //wipes out the message after it has been recieved.
         document.getElementById('message-bingo').value = '';
@@ -406,7 +410,7 @@
           var bodyRect = document.body.getBoundingClientRect();
           var x = document.querySelectorAll('.tweet-user'); 
           for (var i = 0; i < x.length; ++i) {
-            if (x[i].innerHTML === 'Unknown' && flag === false) {
+            if (x[i].innerHTML === visitor && flag === false) {
               flag = true;
               x[i].parentElement.style.backgroundColor = '#ddeb25bd';
               rectanglePos = x[i].parentElement.getBoundingClientRect();
