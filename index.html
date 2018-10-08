@@ -99,7 +99,6 @@
     var visitor = 'Guest';
     streams.users[visitor] = [];
     var isDebugMode = false;
-    var peekaboo;
 
     $(document).ready(function () {
       
@@ -194,7 +193,7 @@
           if (this.getter1() < index) {
             this.setPastCount(index);
           }
-          // this.updateTweetCount();
+          this.updateTweetCount();
 
 
           // i want to append the 10th one the latest one to the top.
@@ -226,7 +225,7 @@
           //i want to prepend each one abovethe tweets.
           //tweet 11, then 12 then 13
           // this.setCurrentCount();
-          for (var i = this.tweetPastCount+1; i <= this.tweetCurrentCount; ++i) {
+          for (var i = this.getter1()+1; i < this.getter2(); i++) {
             this.showTweet(i);
           }
           //overload the button to show the tweet container back again.
@@ -252,7 +251,7 @@
 
         updateTweetCount: function(className = '.refresh-count') {
           var diffCount = this.getDiffCount();
-          $('.refresh-count').replaceWith(`<p class="refresh-count">${diffCount}</p>`);
+          $('.refresh-count').text(`${diffCount-1}`);
           // this.updateTime();
         },
 
@@ -496,7 +495,7 @@
       <section class="content col-2-3">
         <div class="refresh-bar">
           <div class="btn refresh-btn">Refresh</div>
-          <label class="refresh-count"></label>
+          <p class="refresh-count"></p>
           <!-- I dont want to do divitis but flex works best with block elements. -->
         </div>
         <!-- This is the feed -->
