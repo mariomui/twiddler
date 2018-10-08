@@ -191,7 +191,7 @@
           }
           //i want to append the 10th one the latest one to the top.
 
-          $('.tweet-user').click( (e) => {
+          $('.filter-by.tweet-user').click( (e) => {
             var userName=$(e.target).text();
             // alert($(this).attr('setid'));
             // $('tweet').eq(1).slideUp();
@@ -202,14 +202,15 @@
         },
 
         showTweetLooper: function() { 
-          this.updateTime();
+          // this.updateTime();
           //so my divider doesnt get spammed.
           //If I don't see the divider and the diff count is greater than five then
           //do the divider bar.
+          // && this.getDiffCount() > 3
 
-          if ((document.getElementsByClassName("tweet-bar")[0].firstChild.classList[0] !== 'tweet-divider') && this.getDiffCount() > 2) {
+          if ((document.getElementsByClassName("tweet-bar")[0].firstChild.classList[0] !== 'tweet-divider')) {
             
-            $("<div class='tweet-divider'>Past Tweets</p>").prependTo('.tweet-bar');   
+            $("<div class='tweet-divider'>Past Tweets</div>").prependTo('.tweet-bar');   
           }
 
           
@@ -220,6 +221,7 @@
           for (var i = this.tweetPastCount+1; i <= this.tweetCurrentCount; ++i) {
             this.showTweet(i);
           }
+          //overload the button to show the tweet container back again.
           $('.tweet-container').show();
           this.updateTweetCount();
         },
@@ -227,22 +229,21 @@
         //this creates a forever loop where the counts are always being updated.
         everSet: function() {
           
-          
+          //removing line 231 results in faster times. breaking up updateTime into 2 functions will better. A helper functin and then the looping function.
           this.updateTime();
+          this.setCurrentCount(); 
           $('.threeof5').text(this.tweetCurrentCount+' '+this.tweetPastCount);
           this.updateTweetCount('.refresh-count');
-
+          
           setTimeout( () => { 
-            this.setCurrentCount(); 
             this.everSet();
-            // this.updateTime();
-          },4000);
+          },3000);
           
         },
         
 
         updateTweetCount: function(className = '.refresh-count') {
-          var diffCount = Math.abs(this.tweetCurrentCount - this.tweetPastCount);
+          var diffCount = this.getDiffCount();
           $('.refresh-count').replaceWith(`<p class="refresh-count">${diffCount}</p>`);
           // this.updateTime();
         },
@@ -294,6 +295,7 @@
             if (userName ===  bingo) {
               $('.tweet-container').eq(i).addClass('bingo');
             } else {
+              $('.tweet-container').eq(i).removeClass('bingo');
               $('.tweet-container').eq(i).hide();
             }
 
@@ -341,7 +343,7 @@
     
       setInterval( () => {
             fStore.updateTime();
-          }, 60000);
+          }, 30000);
 
       // if (isDebugMode) {
       //   $("*").addClass("debug-borders");
@@ -377,12 +379,16 @@
       
 //debugger: testing the writeTweet funtion //this links to some random button.
       $('.tester').on('click', () => {
-        fStore.writeTweet('hello') });
+        fStore.writeTweet('hello');
+      });
 
 //refresh button
-      $('.refresh-btn').click( () => { 
-        fStore.showTweetLooper(); 
+      $('.refresh-btn').on('click', () => {
+        if (fStore.getDiffCount() > 3) {
+          fStore.showTweetLooper(); 
+        }
       });
+      // $('.refresh-btn').click( () => fStore.showTweetLooper());
 
 //debugger: uses the text area to insert a message from visitor
       $('#message-activator').on('click', () => {
@@ -418,12 +424,14 @@
           }
           // console.log(rectanglePos);
           // console.log(bodyRect);
-          
+
+
+          flag = false;
           //gets the offset and scrolls to the latest tweet.
           window.scrollTo(0,rectanglePos.y-bodyRect.y);
           $('.refresh-btn').text("Click To Refresh");
 
-        }, 5150);
+        }, 4150);
 
         
       
