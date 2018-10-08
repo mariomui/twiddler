@@ -39,7 +39,7 @@
 
           <!-- <button for="form-toggle" class="btn tweet-btn tweet-btn--primary">  -->
           <div class="compose-fake-btn">
-            <label id=#second for="form-toggle" class="btn form-toggle-label">
+            <label id='second' for="form-toggle" class="btn form-toggle-label">
               Compose A Twidder
             </label>
           </div>
@@ -56,7 +56,7 @@
           <div class="form-grid">
             <div class="form-row">
               <div class="form-1">
-                <form class="main">
+                <!-- <form class="main">
                   <fieldset class="composer">
                         <label>Username<input type="text"></label>
                         <label>Password<input type="text"></label>
@@ -67,14 +67,14 @@
                     </label>
                     
                   </fieldset>
-                </form>
+                </form> -->
               </div>
                  
               <div class="form-2">
-                <form name="alpha">
+                <form name="alphaDog">
                   <fieldset class="message-area">
                     <legend>Message</legend>
-                      <textarea id="message-bingo"></textarea>
+                      <textarea name="betaDog" cols="35" id="message-bingo" value="hi"></textarea>
                   </fieldset>
                   <fieldset class="message-action">
                     <input id="message-activator" type="text" class='btn' value="submit">
@@ -95,7 +95,7 @@
     //global variables.
     
 
-    var visitor = 'Unknown';
+    var visitor = 'Guest';
     streams.users[visitor] = [];
     var isDebugMode = false;
     var peekaboo;
@@ -375,7 +375,9 @@
         $('html, body').animate({ scrollTop: 0 }, 'fast');
         //or window.scrollTo(0,0)
         
-        
+        $('#second').on('click', () => {
+          $("textarea#message-bingo").focus();
+        });
         
         setTimeout( () => {
           fStore.showTweetLooper(); 
@@ -402,6 +404,9 @@
       
       });
 
+      
+
+//
 //listener for the border-debugger keystroke CMD+E
       document.addEventListener('keydown', function(event) {
         if (event.code == 'KeyE' && (event.ctrlKey || event.metaKey)) {
@@ -414,8 +419,8 @@
       // $('.tweet-btn').click( () => { fStore.updateTime(); });
     
         
+        //the auto-updater (does lots of things for the app that needs updating. prime place to refactor.
         fStore.everSet();
-        // fStore.filterByName(); 
       
       // document.getElementsByTagName('.refresh-btn').onClick=fStore.showTweetLooper();;
       // setInterval( () => { fStore.setCurrentCount(); }, 13000);
